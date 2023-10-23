@@ -1,0 +1,36 @@
+
+.card {
+    position: relative;
+    box-shadow: none;
+    background: none;
+}
+
+.card-side {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    transition: all 0.8s ease;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    padding:2rem;
+}
+
+.card-side.back {
+    transform: rotateY(-180deg);
+    background-color: #60d041;
+}
+
+.card-side.front {
+    background-color: #0093E9;
+}
+
+.card.clicked .card-side.front{
+    transform: rotateY(180deg);
+}
+
+.card.clicked .card-side.back{
+    transform: rotateY(0deg);
+}
