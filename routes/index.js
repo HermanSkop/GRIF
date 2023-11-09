@@ -4,8 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log(next);
-    next();
+    res.sendFile('main.html', { root: 'public' });
 });
 
 router.get('/', function(req, res, next) {
