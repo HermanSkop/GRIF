@@ -459,6 +459,7 @@ body{
     align-content: center;
     margin-top: 10%;
 }
+/* further code for Timer is in css/timer.css */
 
 
 @media (max-width: 1100px) {
