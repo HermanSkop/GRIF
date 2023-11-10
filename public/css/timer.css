@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('../fonts/Proxima Nova.otf') format('truetype');
+}
+@font-face {
+    font-family: 'Gafata';
+    src: url('../fonts/Gafata-Regular.ttf') format('truetype');
+}
+
+.timer-container {
+    color: #FFFFFF;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Proxima Nova', sans-serif;
+}
+
+h1 {
+    font-weight: 700;
+    letter-spacing: .125rem;
+    text-transform: uppercase;
+}
+
+ul{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gafata', sans-serif;
+}
+ul li:nth-child(2n) {
+    font-size: 3vw;
+    margin-bottom: 4vw;
+}
+li {
+    font-size: 2.5vw;
+    width: 8vw;
+    display: inline-block;
+    list-style-type: none;
+    text-transform: uppercase;
+}
+
+li span {
+    font-size: 8vw;
+    display: block;
+}

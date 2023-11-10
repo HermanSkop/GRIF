@@ -453,6 +453,14 @@ body{
     background-color: #F8CA14;
 }
 
+/* Timer */
+.timer{
+    display: flex;
+    align-content: center;
+    margin-top: 10%;
+}
+
+
 @media (max-width: 1100px) {
     /* Main description */
     .rectangle{

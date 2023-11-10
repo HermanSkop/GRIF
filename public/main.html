@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope:300,400,500,600,700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap">
+    <link rel="stylesheet" href="css/timer.css">
     <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/timer.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <title>GRIF</title>
@@ -303,7 +306,8 @@
         <div class="auditorium">
             <div class="auditorium-description"><h2>ПРЕМИАЛЬНАЯ ПЛОЩАДКА “КОНФЕРЕНЦ ЗАЛ МИНСК”</h2>
                 <p style="color: #828282">Минск, ул.Кирова 18, President Hotel Minsk</p>
-                <p style="color: #E2E2E2">Пятизвёздочный Отель, расположен в исторической части белорусской столицы в непосредственной близости
+                <p style="color: #E2E2E2">Пятизвёздочный Отель, расположен в исторической части белорусской столицы в
+                    непосредственной близости
                     от главной магистрали Минска – проспекта Независимости. Модернизированний конгресс-холл на 600
                     человек, дает возможность проведения масштабных мероприятий на самом высоком уровне и делает
                     «Президент-Отель» ведущим бизнес-отелем Республики Беларусь.
@@ -312,6 +316,22 @@
             </div>
             <div class="auditorium-image">
                 <img src="images/auditorium.png" alt="auditorium">
+            </div>
+        </div>
+        <div class="timer">
+            <div class="timer-container">
+                <h1 id="headline">ДО КОНЦА СКИДКИ ОСТАЛОСЬ</h1>
+                <div id="countdown">
+                    <ul>
+                        <li><span id="days"></span>ДНЕЙ</li>
+                        <li>:</li>
+                        <li><span id="hours"></span>ЧАСОВ</li>
+                        <li></li>
+                        <li><span id="minutes"></span>МИНУТ</li>
+                        <li>:</li>
+                        <li><span id="seconds"></span>СЕКУНД</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -326,6 +346,5 @@
 
     </div>
 </div>
-
 </body>
 </html>
