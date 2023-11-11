@@ -556,6 +556,10 @@ body{
     color: #F8CA14;
     background-color: black;
 }
+.plan:nth-child(3) p{
+    color: #F8CA14;
+}
+
 .plan:nth-child(3) button{
     background-color: #F8CA14;
     color: white;
