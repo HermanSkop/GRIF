@@ -3,7 +3,7 @@
         minute = second * 60,
         hour = minute * 60,
         day = hour * 24,
-        deadline = "Nov 11, 2023 00:00:00"; // Change this to your desired date
+        deadline = "Feb 12, 2024 00:00:00"; // Change this to your desired date
 
     const countDown = new Date(deadline).getTime(),
         x = setInterval(function() {
