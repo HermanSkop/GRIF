@@ -82,6 +82,32 @@ a{
     background-repeat: no-repeat;
     background-image: url(../images/main.jpg);
     height: 859px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 8%;
+}
+.main-screen a{
+    width: fit-content;
+    margin: 0 auto;
+}
+.main-screen .main-content {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+    padding-top: 7%;
+}
+.main-screen .main-content h1{
+    font-size: 64px;
+    margin: 0;
+}
+.main-screen .main-content .partners{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 28%;
 }
 
 .main-screen-side-bar {
@@ -91,11 +117,9 @@ a{
     align-items: center;
     justify-content: center;
 }
-
 .main-screen-side-bar a {
     margin-top: 33%;
 }
-
 .main-screen-side-bar a img {
     width: 20px;
 }
@@ -103,29 +127,15 @@ a{
 .custom-navbar .navbar-nav .nav-link, .custom-navbar .navbar-nav .nav-link.active, .custom-navbar .navbar-nav .nav-link.show {
     color: #ffffff;
 }
-
 .navbar{
+    position: fixed;
     padding: 0;
     height: 75px;
-    margin-bottom: 50px;
+    margin: 0 auto;
+    background-color: #171717;
 }
-
-.main-screen .main-content {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: #FFFFFF;
-}
-.main-screen .main-content h1{
-    font-size: 64px;
-    margin: 0;
-}
-
-.main-screen .main-content .partners{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 28%;
+.navbar .container-fluid{
+    width: 90%;
 }
 
 .custom-collapse {
@@ -169,7 +179,7 @@ a{
 .main-description-container .rectangle {
     width: 73%;
     height: 100vh;
-    z-index: 2;
+    z-index: 1;
     position: absolute;
     top: -5vh;
     right: -1px;
