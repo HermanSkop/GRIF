@@ -373,7 +373,7 @@ a{
     background: black;
     transform: rotate(-5deg);
     color: white;
-    top: -50%;
+    top: -5vw;
 }
 .second-ribbon .separator{
     color: #F8CA14;
