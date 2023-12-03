@@ -833,6 +833,31 @@ a{
         width: 100%;
     }
 
+    /* navbar */
+    .current {
+        border-top: none;
+        background-color: #F8CA14;
+        color: #171717;
+    }
+    .custom-collapse{
+        align-items: center;
+        margin: 0;
+        width: 100%;
+        background-color: #171717;
+        border-radius: 3px;
+    }
+    .custom-collapse a{
+        margin: 10px 0;
+        font-size: 3vw;
+    }
+    .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+    .show{
+        box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.5);
+        border-radius: 4px;
+    }
     /* Main description */
     .rectangle{
         display: none;
