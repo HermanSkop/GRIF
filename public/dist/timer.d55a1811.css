@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('/Proxima Nova.f64d0b9b.otf') format('truetype');
+}
+@font-face {
+    font-family: 'Gafata';
+    src: url('/Gafata-Regular.f874922c.ttf') format('truetype');
+}
+
+.timer-container {
+    color: #FFFFFF;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Proxima Nova', sans-serif;
+}
+.timer-container h1 {
+    font-weight: 700;
+    letter-spacing: .125rem;
+    text-transform: uppercase;
+}
+.timer-container ul{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gafata', sans-serif;
+}
+.timer-container ul li:nth-child(2n) {
+    font-size: 3vw;
+    margin-bottom: 4vw;
+}
+.timer-container li {
+    font-size: 2.5vw;
+    width: 8vw;
+    display: inline-block;
+    list-style-type: none;
+    text-transform: uppercase;
+}
+.timer-container li span {
+    font-size: 8vw;
+    display: block;
+}
+
+/*# sourceMappingURL=/timer.d55a1811.css.map */
