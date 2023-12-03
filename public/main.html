@@ -33,7 +33,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav custom-collapse">
-                    <li class="nav-item current">
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#speakers">Спикеры</a>
                     </li>
                     <li class="nav-item">
@@ -49,9 +49,27 @@
                         <a class="nav-link" href="#plans">Тарифы</a>
                     </li>
                 </ul>
+                <script type="module">
+                    window.addEventListener('scroll', function () {
+                        document.querySelectorAll('.section').forEach((elem) => {
+                            let navlink = document.querySelector(`a[href="#${elem.id}"]`);
+                            if (100 >= elem.getBoundingClientRect().top) {
+                                setActive(navlink);
+                            }
+                        });
+                    });
+                    function setActive(element) {
+                        const listItems = document.querySelectorAll('.navbar-nav .nav-item');
+                        listItems.forEach(function (item) {
+                            item.classList.remove('current');
+                        });
+                        if(element != null) element.parentElement.classList.add('current');
+                    }
+                </script>
             </div>
         </div>
     </nav>
+    <div class="section" id="top"></div>
     <div class="main-screen">
         <div>
             <div class="main-content"> <!-- In this section style attribute is often used since styles of each tag are completely different.
@@ -107,7 +125,8 @@
         </a>
     </div>
     <div class="rest-container">
-        <div class="main-description-container" id="speakers">
+        <div class="section"  id="speakers"></div>
+        <div class="main-description-container">
             <div class="blur"></div>
             <img class="rectangle" src="images/rectangle.png" alt="">
             <script>
@@ -227,11 +246,13 @@
                 <script src="js/cards.js"></script>
             </div>
         </div>
-        <div class="schedule-container" id="schedule">
+
+        <div class="section" id="schedule"></div>
+        <div class="schedule-container">
             <h1 class="main-point">Расписание форума</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis quam malesuada
                 scelerisque ultrices gravida</p>
-            <div class="schedule-container">
+            <div class="schedule">
                 <h2 class="schedule-title">Суббота, 25 Ноября 2023</h2>
                 <div class="schedule-item">
                     <div class="schedule-item-time">
@@ -280,7 +301,9 @@
                 </div>
             </div>
         </div>
-        <div class="participants" id="participants">
+
+        <div class="section" id="participants"></div>
+        <div class="participants" >
             <h1 class="main-point">Участники</h1>
             <div class="participants-container">
                 <div class="participants-item">
@@ -342,7 +365,9 @@
             </div>
             <div class="main-button">Присоедениться</div>
         </div>
-        <div class="auditorium" id="auditorium">
+
+        <div class="section" id="auditorium"></div>
+        <div class="auditorium" >
             <div class="auditorium-description"><h2>ПРЕМИАЛЬНАЯ ПЛОЩАДКА “КОНФЕРЕНЦ ЗАЛ МИНСК”</h2>
                 <p style="color: #828282">Минск, ул.Кирова 18, President Hotel Minsk</p>
                 <p style="color: #E2E2E2">Пятизвёздочный Отель, расположен в исторической части белорусской столицы в
@@ -374,7 +399,9 @@
             </div>
             <div class="gradient-line"></div>
         </div>
-        <div class="plans" id="plans">
+
+        <div class="section" id="plans"></div>
+        <div class="plans">
             <h1 class="main-point">ТАРИФЫ</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada tristique justo quis
                 ultrices. Morbi gravida dignissim lectus, et semper nulla varius a</p>
@@ -522,7 +549,9 @@
                 </div>
             </div>
         </div>
-        <div class="footer" id="footer">
+
+        <div class="section"  id="footer"></div>
+        <div class="footer">
             <h1>Questions left?</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada tristique justo quis ultrices.
                 Morbi gravida dignissim lectus, et semper nulla varius a</p>

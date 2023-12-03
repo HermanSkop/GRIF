@@ -73,6 +73,10 @@ a{
     color: inherit;
 }
 
+.section{
+
+}
+
 /* Main */
 .main-screen {
     position: relative;
@@ -164,7 +168,7 @@ a{
 
 .main-description-container {
     position: relative;
-    min-height: 800px;
+    min-height: 650px;
     display: flex;
     width: 100%;
     align-items: center;
@@ -281,6 +285,7 @@ a{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 100px;
 }
 .schedule-container > p{
     width: 60%;
@@ -289,6 +294,11 @@ a{
     margin: 0;
 }
 
+.schedule{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .schedule-title{
     font-weight: 700;
     margin: 5% 0;
@@ -393,6 +403,7 @@ a{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 100px;
 }
 .participants-container{
     display: flex;
