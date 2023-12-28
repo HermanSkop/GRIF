@@ -75,7 +75,7 @@
         Creating a separate class for each of them would produce even more ugly code -->
                 <h1>GLOBAL REALITY</h1>
                 <h1 style="color:#FACC14;">INVESTING FORUM</h1>
-                <p style="font-weight: 400;">ГЛАВНОЕ СОБЫТИЕ В МИРЕ ИНВЕСТИЦИЙ В<br>МЕЖДУНАРОДНУЮ НЕДВИЖИМОСТЬ</p>
+                <p style="font-weight: 400;">{{__('prompt')}}</p>
                 <p><img style="height: 27px" src="images/location.png" alt="location"> President Hotel <img
                         style="height: 27px; margin-left: 5px" src="images/time.png" alt="time"> 9:00-21:00, 25
                     NOVEMBER
@@ -513,7 +513,7 @@
                             </div>
                         </li>
                     </ul>
-                    <form action="">
+                    <form action="/promo" method="post">
                         <input class="promo-input" placeholder="Add Promo Code" type="text" id="promo"
                                name="promo-code">
                         <button type="submit">
@@ -536,12 +536,12 @@
                 </div>
                 <div class="credentials-form">
                     <h4>Заполните заявку</h4>
-                    <form action="">
+                    <form action="/reserve" method="post">
                         <input autocomplete="on" placeholder="Your name" type="text" id="name" name="name">
                         <input autocomplete="on" placeholder="Email" type="text" id="email" name="email">
                         <input autocomplete="on" placeholder="Phone No." type="text" id="phone" name="phone">
                         <div>
-                            <button class="main-button">Pay</button>
+                            <button type="submit" class="main-button" >Pay</button>
                             <p>$200</p>
                         </div>
                     </form>

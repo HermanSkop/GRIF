@@ -1,14 +1,13 @@
 const express = require('express');
-const e = require("express");
 const router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.sendFile('main.html', { root: 'public' });
+const i18n = require('express');
+router.use(express.urlencoded({ extended: true }));
+router.get('/', function (req, res, next) {
+    res.render('index')
 });
-
-router.get('/', function(req, res, next) {
-  res.send('<h1>second</h1>');
+router.post('/reserve', function (req, res,
+                                  next) {
+    console.log(req.body);
+    res.redirect('/#plans');
 });
-
 module.exports = router;
