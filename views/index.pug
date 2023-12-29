@@ -65,7 +65,8 @@ head
                     img(style='height: 27px; margin-left: 5px' src='images/time.png' alt='time')
                     |  9:00-21:00, 25
                     |                     NOVEMBER
-                button.main-button #{tr.participate}
+                a(href='#plans')
+                    button.main-button #{tr.participate}
                 p(style='font-size: 17px; margin-top: 1rem; font-family: Proxima Nova, sans-serif')
                     | #{tr.main_partners}:
                 .partners
@@ -121,8 +122,9 @@ head
                                 .bottom-description
                                     h4 #{tr.forum}:
                                     h4 #{tr.speakers_list[0].forum_date}
-                                    button.card-button #{tr.buy_ticket}
-                                        img(src='images/arrow.png' alt='')
+                                    a(href="#plans")
+                                        button.card-button #{tr.buy_ticket}
+                                            img(src='images/arrow.png' alt='')
                             img.person-card-image(src='images/1.png' alt='')
                         .card-side.back(style='background-color: #4DE3ED;')
                             div #{tr.speakers_list[0].background}
@@ -135,8 +137,9 @@ head
                                 .bottom-description
                                     h4 #{tr.forum}:
                                     h4 #{tr.speakers_list[1].forum_date}
-                                    button.card-button #{tr.buy_ticket}
-                                        img(src='images/arrow.png' alt='')
+                                    a(href="#plans")
+                                        button.card-button #{tr.buy_ticket}
+                                            img(src='images/arrow.png' alt='')
                             img.person-card-image(src='images/1.png' alt='')
                         .card-side.back(style='background-color: #ffd710;')
                             div #{tr.speakers_list[1].background}
@@ -149,8 +152,9 @@ head
                                 .bottom-description
                                     h4 #{tr.forum}:
                                     h4 #{tr.speakers_list[2].forum_date}
-                                    button.card-button #{tr.buy_ticket}
-                                        img(src='images/arrow.png' alt='')
+                                    a(href="#plans")
+                                        button.card-button #{tr.buy_ticket}
+                                            img(src='images/arrow.png' alt='')
                             img.person-card-image(src='images/1.png' alt='')
                         .card-side.back(style='background-color: #ff1010;')
                             div #{tr.speakers_list[2].background}
@@ -163,8 +167,9 @@ head
                                 .bottom-description
                                     h4 #{tr.forum}:
                                     h4 #{tr.speakers_list[3].forum_date}
-                                    button.card-button #{tr.buy_ticket}
-                                        img(src='images/arrow.png' alt='')
+                                    a(href="#plans")
+                                        button.card-button #{tr.buy_ticket}
+                                            img(src='images/arrow.png' alt='')
                             img.person-card-image(src='images/1.png' alt='')
                         .card-side.back(style='background-color: #60d041;')
                             div #{tr.speakers_list[3].background}
@@ -230,7 +235,8 @@ head
                     .schedule-item-description
                         h5 #{tr.forum_program_list[6].title}
                         p #{tr.forum_program_list[6].description}
-            button.main-button #{tr.discover_plans}
+            a(href="#plans")
+                button.main-button #{tr.discover_plans}
             .ribbon-container
                 .ribbon.first-ribbon
                     .ribbon-labels
@@ -321,7 +327,8 @@ head
                 h2 #{tr.auditorium_title}
                 p(style='color: #828282') #{tr.auditorium_address}
                 p(style='color: #E2E2E2') !{tr.auditorium_text}
-                button.main-button #{tr.buy_ticket}
+                a(href="#plans")
+                    button.main-button #{tr.buy_ticket}
             .auditorium-image
                 img(src='images/auditorium.png' alt='auditorium')
         .timer
@@ -476,7 +483,7 @@ head
         .footer
             h1 #{tr.questions_left}
             p #{tr.footer_text}
-            button.main-button Contact us
+            button.main-button #{tr.contact_us}
             div
                 a(href='#') Privacy Policy
                 a(href='#') Terms &amp; Conditions
