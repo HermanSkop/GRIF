@@ -6,8 +6,14 @@ const logger = require('morgan');
 const session = require('express-session');
 const i18n = require('i18n-express');
 const pug = require('pug');
-
+const winston = require('winston');
+const expressWinston = require('express-winston');
 const indexRouter = require('./routes/index');
+const defaultPricesMiddleware = (req, res, next) => {
+  const prices = fs.readFileSync(path.join(__dirname, 'prices.json'), 'utf8');
+  req.prices = JSON.parse(prices);
+  next();
+};
 
 const app = express();
 const port = 3001;
@@ -32,6 +38,16 @@ app.use(i18n({
   textsVarName: 'tr',
   defaultLang: 'en',
 }));
+app.use(expressWinston.logger({
+  transports: [
+    new winston.transports.File({ filename: 'logs/combined.log' }),
+  ],
+  format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.json()
+  )
+}));
+app.use(defaultPricesMiddleware);
 
 app.use('/', indexRouter);
 app.use('/reserve', indexRouter);
@@ -40,14 +56,13 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  //console.log(err.message);
+  //console.log(req.app.get('env') === 'development' ? err : {});
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {
+    message: req.body.message,
+    title: req.body.title,
+  });
 });
-app.listen(port,
-    () => console.log(`Listening on port ${port}`));
+app.listen(port,() => console.log(`Listening on port ${port}`));
 module.exports = app;

@@ -4,43 +4,55 @@ const fs = require('fs');
 async function updateExcelFile(filePath, newData) {
     const workbook = new excel.Workbook();
     await workbook.xlsx.readFile(filePath);
-
-    // Assuming the first sheet is the one you want to update
     const worksheet = workbook.getWorksheet(1);
 
-    // Append the new data to the worksheet
     worksheet.addRow(newData);
 
-    // Save the changes back to the file
     await workbook.xlsx.writeFile(filePath);
 }
 
-async function createExcelFile(filePath, initialData) {
+async function createGuestsFile(filePath, initialData) {
     const workbook = new excel.Workbook();
-    const worksheet = workbook.addWorksheet('guests');
+    const worksheet = workbook.addWorksheet('main');
 
-    // Add headers
-    worksheet.addRow(['name', 'email', 'phone', 'plan']); // Replace with your actual column names
-
-    // Add the initial data
     worksheet.addRow(initialData);
 
-    // Save the workbook to the file
     await workbook.xlsx.writeFile(filePath);
 }
 
-async function handleExcelFile(filePath, newData) {
-    try{
-        if(fs.existsSync(filePath)) {
-            await updateExcelFile(filePath, newData);
-        }
-        else {
-            await createExcelFile(filePath, newData);
-        }
+/**
+ * Reads the Excel file and returns the data in an array of objects
+ * @param filePath - path to the Excel file
+ * @returns {Promise<[]|*[]>} - {promoCode: discount}
+ */
+async function readPromoFromExcelFile(filePath) {
+    try {
+        if (!fs.existsSync(filePath)) return []
+
+        const workbook = new excel.Workbook();
+        await workbook.xlsx.readFile(filePath);
+        const worksheet = workbook.getWorksheet(1);
+        const rows = {};
+
+        worksheet.eachRow((row, rowNumber) => {
+            rows[row.getCell(1).value] = row.getCell(2).value;
+        });
+        return rows;
     }
     catch (err) {
-        throw "Error while handling the excel file: " + err;
+        console.log(err);
     }
 }
 
-module.exports = handleExcelFile;
+async function writeToExcelFile(filePath, newData) {
+    try{
+        if(fs.existsSync(filePath)) await updateExcelFile(filePath, newData);
+        else await createGuestsFile(filePath, newData);
+    }
+    catch (err) {
+        throw "Error while writing to the excel file: " + err;
+    }
+}
+
+module.exports.writeToExcelFile = writeToExcelFile;
+module.exports.readPromoFromExcelFile = readPromoFromExcelFile;

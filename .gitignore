@@ -1,2 +1,4 @@
-/database/guests.xlsx
 /package-lock.json
+/logs/
+/database/
+/node_modules/
