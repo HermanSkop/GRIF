@@ -55,14 +55,13 @@ app.use('/static', express.static('public'));
 app.use(function(req, res, next) {
   next(createError(404));
 });
-app.use(function(err, req, res, next) {
-  //console.log(err.message);
-  //console.log(req.app.get('env') === 'development' ? err : {});
+app.use(function(err, req, res) {
+  console.log(err.message);
+  console.log(req.app.get('env') === 'development' ? err : {});
 
   res.render('error', {
     message: req.body.message,
     title: req.body.title,
   });
 });
-app.listen(port,() => console.log(`Listening on port ${port}`));
 module.exports = app;
