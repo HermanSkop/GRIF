@@ -39,12 +39,12 @@ router.post('/reserve', async function (req, res, next) {
                 price: await getPrice('online') * discount,
                 date: new Date().toLocaleString()
             });
-            next();
+            next(req, res, next);
         })
         .catch(err => {
             req.body.title = 'Failure!';
             req.body.message = 'Input data is invalid.';
-            next(err);
+            next(req, res, next, err);
         });
 });
 router.post('/promo', async function (req, res) {
@@ -60,4 +60,3 @@ router.get('/deadline', async function (req, res) {
     else req.body.deadline = time
     res.json({"deadline": time});
 });
-
