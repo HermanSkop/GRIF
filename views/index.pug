@@ -13,6 +13,36 @@ head
     script(src='js/bootstrap.bundle.js')
     title GRIF
 .body-container
+    #popup.div.overlay.active
+        div.popup
+            .tabs
+                .tab(onclick="switchLoginContent('login')") Login
+                .tab(onclick="switchLoginContent('register')") Register
+            #loginContent.content.active
+                form
+                    h1 Hello again!
+                    input(type="text", placeholder="Username")
+                    input(type="password", placeholder="Password")
+                    button(type="submit") Login
+            #registerContent.content
+                form
+                    h1 Join us!
+                    input(type="text", placeholder="Username")
+                    input(type="password", placeholder="Password")
+                    button(type="submit") Register
+    script.
+        function switchLoginContent(contentType) {
+            const loginContent = document.getElementById('loginContent');
+            const registerContent = document.getElementById('registerContent');
+
+            if (contentType === 'login') {
+                loginContent.classList.add('active');
+                registerContent.classList.remove('active');
+            } else {
+                loginContent.classList.remove('active');
+                registerContent.classList.add('active');
+            }
+        }
     nav.navbar.navbar-expand-lg.fixed-top.custom-navbar
         .container-fluid(style='padding: 0 0 0 0')
             a.navbar-brand(href='#')
@@ -55,6 +85,14 @@ head
                         a.nav-link(href='#auditorium') #{tr.auditorium}
                     li.nav-item
                         a.nav-link(href='#plans') #{tr.plans}
+                    li.nav-item(onclick='toggleLogin()')
+                        a.nav-link Login
+                    script.
+                        function toggleLogin() {
+                            const login = document.getElementById('popup');
+                            console.log(login)
+                            login.classList.contains('active')?login.classList.remove('active'):login.classList.add('active');
+                        }
                 script(type='module').
                     window.addEventListener('scroll', function () {
                     document.querySelectorAll('.section').forEach((elem) => {
