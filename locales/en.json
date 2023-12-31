@@ -130,6 +130,9 @@
 
   "questions_left": "Questions left?",
   "footer_text": "If you have any questions, please contact us by phone or email. We will be happy to answer you.",
-  "contact_us": "Contact us"
+  "contact_us": "Contact us",
+
+  "history": "Payment history",
+  "no_payments": "No payments yet"
 }
 

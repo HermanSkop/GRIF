@@ -9,14 +9,14 @@ const pug = require('pug');
 const winston = require('winston');
 const expressWinston = require('express-winston');
 const indexRouter = require('./routes/index');
-const defaultPricesMiddleware = (req, res, next) => {
-  const prices = fs.readFileSync(path.join(__dirname, 'prices.json'), 'utf8');
-  req.prices = JSON.parse(prices);
+const {getPlans} = require('./schemas/pricing-schema');
+
+const defaultPricesMiddleware = async (req, res, next) => {
+  req.prices = await getPlans() || [];
   next();
 };
 
 const app = express();
-const port = 3001;
 const fs = require('fs');
 
 app.set('views', path.join(__dirname, 'views'));
@@ -52,16 +52,12 @@ app.use(defaultPricesMiddleware);
 app.use('/', indexRouter);
 app.use('/reserve', indexRouter);
 app.use('/static', express.static('public'));
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-app.use(function(err, req, res) {
-  console.log(err.message);
-  console.log(req.app.get('env') === 'development' ? err : {});
 
+app.use(function(err, req, res, next) {
   res.render('error', {
     message: req.body.message,
     title: req.body.title,
   });
 });
+
 module.exports = app;

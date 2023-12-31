@@ -19,6 +19,28 @@ head
                 h1(style='font-size: 40px; font-weight: 700; margin: auto;')
                     span(style="color:#FFFFFF; font-family: 'Manrope', sans-serif;") GR
                     span(style='color: #F8CA14') IF
+            div.history-title #{tr.history}
+            if typeof payments !== 'undefined' && payments.length > 0
+                table.history
+                    tr.history-row
+                        th.history-item Name
+                        th.history-item Email
+                        th.history-item Phone
+                        th.history-item Plan
+                        th.history-item Promo
+                        th.history-item Price
+                        th.history-item Date
+                    each payment in payments
+                        tr.history-row
+                            td.history-item #{payment.name}
+                            td.history-item #{payment.email}
+                            td.history-item #{payment.phone}
+                            td.history-item #{payment.plan}
+                            td.history-item #{payment.promo}
+                            td.history-item #{payment.price}
+                            td.history-item #{payment.date}
+            else
+                p.history(style='padding: 10px') #{tr.no_payments}
             button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
                 span.navbar-toggler-icon
             #navbarNav.collapse.navbar-collapse
@@ -361,7 +383,7 @@ head
                 .plan
                     img(src='images/camera.png' alt='camera')
                     h2 #{tr.online}
-                    h1 $#{Math.floor(prices.online*(discount===undefined?1:discount))}
+                    h1 $#{Math.floor(prices[0].price*(discount===undefined?1:discount))}
                     p #{tr.including_taxes}
                     .included
                     ul
@@ -381,7 +403,7 @@ head
                 .plan
                     img(src='images/suitcase.png' alt='camera')
                     h2 #{tr.standard}
-                    h1 $#{Math.floor(prices.standard*(discount===undefined?1:discount))}
+                    h1 $#{Math.floor(prices[1].price*(discount===undefined?1:discount))}
                     p #{tr.including_taxes}
                     .included
                     ul
@@ -401,7 +423,7 @@ head
                 .plan
                     img(src='images/crown.png' alt='camera')
                     h2 #{tr.vip}
-                    h1 $#{Math.floor(prices.vip*(discount===undefined?1:discount))}
+                    h1 $#{Math.floor(prices[2].price*(discount===undefined?1:discount))}
                     p #{tr.including_taxes}
                     .included
                     ul
@@ -435,7 +457,7 @@ head
                                         rect(width='32' height='32' fill='white')
                             div
                                 p #{tr.online}
-                                p $#{Math.floor(prices.online*(discount===undefined?1:discount))}
+                                p $#{Math.floor(prices[0].price*(discount===undefined?1:discount))}
                         li.tariff(onclick='chooseItem(this)')
                             svg(xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewbox='0 0 32 32' fill='none')
                                 g(clip-path='url(#clip0_429_190)')
@@ -445,7 +467,7 @@ head
                                         rect(width='32' height='32' fill='white')
                             div
                                 p #{tr.standard}
-                                p $#{Math.floor(prices.standard*(discount===undefined?1:discount))}
+                                p $#{Math.floor(prices[1].price*(discount===undefined?1:discount))}
                         li.tariff(onclick='chooseItem(this)')
                             svg(xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewbox='0 0 32 32' fill='none')
                                 g(clip-path='url(#clip0_429_143)')
@@ -455,7 +477,7 @@ head
                                         rect(width='32' height='32' fill='white')
                             div
                                 p #{tr.vip}
-                                p $#{Math.floor(prices.vip*(discount===undefined?1:discount))}
+                                p $#{Math.floor(prices[2].price*(discount===undefined?1:discount))}
                     form(action='/promo' method='post')
                         input#promo.promo-input(placeholder=tr.add_promo type='text' name='promo')
                         button(type='submit')

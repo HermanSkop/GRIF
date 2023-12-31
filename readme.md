@@ -4,88 +4,65 @@
 
 ## Overview
 
-This version of project is developed to fulfill the requirements of the __tin__ __back__ assignment.
+This version of the project is developed to fulfill the requirements of the __tin__ __front+back__ assignment.
 The project will evolve in complete web application to correspond final specifications - __tin__ __project__.
 
 ## Navigation
 
-Below you can find requirements for the current version of project and references to the implementations. 
+Below you can find requirements for the current version of the project and references to the implementations. 
 
 ## Table of Contents
 
 - [a)](#A)
 - [b)](#B)
-- [c)](#C)
-- [d)](#D)
-- [e)](#E)
 
 ### A
->An app that serves static resources (HTML+CSS, optionally some images) located on the server (2 points)
+>An application that uses a database (either a relational one, such as postgres, or a nonrelational one, such as MongoDB). The data has to be displayed in the form of a table or
+something similar. Some modifying operations should be possible, such as upserting the data.
+A minimum of two tables that are connected is required. (5 points).
 
-Current version of project uses pug view engine instead of native HTML. 
 
-Examples that must fulfill the requirements:
-- [index.pug](views/index.pug) - Pug view
-- [main.css](public/css/main.css) - CSS stylesheet related to the view
-- [index.js](routes/index.js) - route that serves the view
+The choice for the database is [MongoDB](https://www.mongodb.com/). The data is stored in the database in the following
+collections:
+* __users__ - contains information about users
+    * __name__ - name of the user
+    * __email__ - email of the user
+    * __phone__ - phone number of the user
+    * __plan__ - tariff plan of the user
+    * __promo__ - promo code of the user(if any); the field is also foreign key to __promos__ collection, however, since
+MongoDB is non-relational, the promo code is checked for existence in the database in [user-schema.js](schemas/user-schema.js)
+* __pricing__ - contains prices and tariff names
+    * __plan__ - name of the tariff
+    * __price__ - price of the tariff
+* __promos__ - contains information about promos
+  * __promo__ - promo code
+  * __discount__ - discount for the promo code
 
-### B
+To run the app, you need to have MongoDB installed. The database is run on the default port 27017. 
 
-> An app that accepts the form data from either a static HTML site or a templated one and serves back the data in a 
-nicely formatted way (use templates to put the data from the form into the HTML) (2 points)
+Then, in [db.js](database/db.js) file, you need to specify the path and the name of the database you want to use.
+Then you can run a bootstrap script which is located in [db_bootstrap.js](database/db_bootstrap.js).
+Finally, you can run the app with `npm start` command.
 
-Form is located in [index.pug](views/index.pug) view. The data from it is received by __/reserve__ path located in
-[index.js](routes/index.js) route, where it is redirected for [treatment](#C). Depending on success or failure, the 
-request body is edited and sent back to the client.
+An application has a new dropdown table, which is populated with data user inputs in the application form.
+To insert data into the table, you need to fill the form and press the button.
+
+Although the table does not fetch data from the database (bc there is no user validation), the data gathered from the form
+is inserted into the database. [request-handler.js](handlers/request-handler.js) contains the logic for validating and
+inserting data into the database.
 
 ![img.png](public/images/sample-images/img.png)
 
-The page is sent from [app.js](app.js) file as an error page. It is temporary solution to fulfill the [requirements](#C).,
-that will be replaced by frontend validation and backend error response.
+### B
 
-![img_1.png](public/images/sample-images/img_1.png)![img_2.png](public/images/sample-images/img_2.png)
-### C
+> An app that asynchronously queries the backend asking for new information and updating
+the webiste accordingly (without reloading the entire page). The data has to be generated on
+the backend either randomly, read from file or otherwise changed over time. (5 points).
 
->Point b) extended with server-side validation of the entered data. All the fields should have
-some validation, and it has to be non-trivial. Analogous to the frontend tasks, the validation
-rules need to make sense. Either success or failure should be served to the user accordingly
-(success page with filled-in template/failure page with an error message).
+Here, I decided to edit [timer](public/js/timer.js) that is already present in the application.
+The timer fetches deadline from the backend and updates the timer accordingly. Every 10000ms the timer
+sends a request to the backend to get the new deadline. The deadline is stored in the [deadline.json](deadline.json).
 
-The validation is done in [requestHandler.js](models/requestHandler.js) file. All the fields are checked for emptiness 
-and their specific requirements. Then data is written to Excel table, handling related to it issues(That is also temporary
-solution, later SQL db will be introduced). Finally, responding with the result that was specified [above](#B).
+To check its correctness, you can change the deadline in the file and see how the timer changes (remind you about 10 secs delay).
 
-### D
-
->An extension of point c), this time the data being sent to server has to be modified in a non
-trivial way. For instance, we can accept a name of a file and return a rendered page with the
-file with the given filename if it exists on the server, otherwise return an error.
-
-The functionality fulfilling the requirements is implemented for a tariff selection. Data gathered
-in the same [route](routes/index.js) under __/promo__ path. The data is sent to [promoHandler.js](models/promoHandler.js)
-for validation. Promo code is checked for existence in the database and if it is valid, the promo is sent back along with
-discount. Preliminarily, the promo code and discount are saved in session. Pug view is rendered with the data.
-
-I decided not to return error if the promo code is invalid, as the functionality will be replaced by frontend validation
-and error response. Yet, the initial page is sent back as it is. 
-
-
-![img_3.png](public/images/sample-images/img_3.png)
-
-### E
-
->An extension of any of the previous tasks, but using middlewares. For example cookie-parser
-(probably the simplest), internationalisation (i18n library), or authorisation+authentication
-(many different options, probably the hardest).
-
-
-The middleware chosen is [i18n](https://www.npmjs.com/package/i18n-express). The page is rendered in two languages: english
-for obvious reasons and russian, as it is the only language I can provide the proper translation for. Yet, the page is 
-rendered in english by default or russian if it is specified in the request header. UI choice is not implemented and 
-will be done in the future. 
-
-Corresponding files to the specification:
-- [app.js](app.js) - middleware initialization
-- [en.json](locales/en.json) - english translation
-- [ru.json](locales/ru.json) - russian translation
-- [index.pug](views/index.pug) - view using middleware
+![img.png](public/images/sample-images/img1.png)
