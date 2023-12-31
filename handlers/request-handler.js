@@ -1,6 +1,4 @@
-const writeToExcelFile = require('../models/excelHandler').writeToExcelFile;
-const {join} = require("path");
-
+const {writeUser} = require('../schemas/user-schema');
 /**
  * Not any request but rather request on participating in the forum.
  * @param {list} inputData - array of strings with the user's name, email, phone number and plan
@@ -16,7 +14,13 @@ async function handleRequest(inputData) {
         if (!isValidPhone(inputData[2])) throw 'Invalid phone number';
         if (!isValidPlan(inputData[3])) throw 'Invalid plan';
         if (!isValidPromo(inputData[4])) throw 'Invalid promo code';
-        await writeToExcelFile(join(__dirname, '../database/guests.xlsx'), inputData);
+        await writeUser({
+            name: inputData[0],
+            email: inputData[1],
+            phone: inputData[2],
+            plan: inputData[3],
+            promo: inputData[4]
+        });
     } catch (err) {
         console.log(err);
         throw err;
@@ -40,7 +44,7 @@ function isValidPlan(plan) {
     return /^[a-zA-Z]{6}$/.test(plan);
 }
 function isValidPromo(promo) {
-    return /^[a-zA-Z\d]{6}$/.test(promo) || promo === '' || promo === undefined;
+    return /^[a-zA-Z\d]{6}$/.test(promo) || !promo;
 }
 
 module.exports = handleRequest;

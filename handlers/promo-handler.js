@@ -1,6 +1,4 @@
-const readPromoFromExcelFile = require('./excelHandler').readPromoFromExcelFile;
-const {join} = require("path");
-
+const {getDiscount} = require('../schemas/promo-schema');
 async function handlePromoCode(promoCode) {
     try{
         const discount = await getDiscount(promoCode);
@@ -10,10 +8,6 @@ async function handlePromoCode(promoCode) {
     catch (err) {
         console.log(err);
     }
-}
-async function getDiscount(promoCode) {
-    const promoCodes = await readPromoFromExcelFile(join(__dirname, '../database/promoCodes.xlsx'));
-    return promoCodes[promoCode];
 }
 
 module.exports = handlePromoCode;

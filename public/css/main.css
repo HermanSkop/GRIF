@@ -128,6 +128,8 @@ a{
     width: 20px;
 }
 
+
+/* Navbar */
 .custom-navbar .navbar-nav .nav-link, .custom-navbar .navbar-nav .nav-link.active, .custom-navbar .navbar-nav .nav-link.show {
     color: #ffffff;
 }
@@ -149,15 +151,51 @@ a{
     display: flex;
     justify-content: space-between;
 }
-
 .custom-collapse a {
     font-family: 'DM Sans', sans-serif;
     font-size: 13px;
     font-weight: 700;
 }
-
 .current {
     border-top: 1px solid #ffffff;
+}
+
+/* TODO: make relative */
+.history {
+    display: none;
+    position: absolute;
+    top: 50px;
+    background-color: #171717;
+    max-width: 89%;
+
+    border: #ffd710 solid 1px;
+    border-radius: 6px;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+    text-align: left;
+}
+.history-title{
+    margin-left: 20px;
+    font-weight: bold;
+}
+.history-title:hover {
+    cursor: pointer;
+    user-select: none;
+}
+.history-title:hover + .history {
+    display: block;
+}
+.history:hover {
+    display: block;
+}
+.history-row{
+    padding: 10px 20px;
+    border-radius: 6px;
+}
+.history-item {
+    padding: 10px 20px;
 }
 
 
@@ -740,6 +778,9 @@ a{
     line-height: 24px;
     letter-spacing: 0;
     text-align: left;
+}
+.promo-input + button:hover{
+    background-color: #F8CA14;
 }
 
 .selected-tariff {
