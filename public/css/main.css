@@ -135,6 +135,18 @@ a{
 .custom-navbar .navbar-nav .nav-link, .custom-navbar .navbar-nav .nav-link.active, .custom-navbar .navbar-nav .nav-link.show {
     color: #ffffff;
 }
+.nav-item:hover {
+    background-color: #444;
+}
+.nav-item {
+    padding: 10px 20px;
+    border-radius: 2px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.navbar-nav.custom-collapse li:first-child *{
+    color: #e5d653;
+}
+
 .navbar{
     position: fixed;
     padding: 0;
@@ -147,11 +159,11 @@ a{
 }
 
 .custom-collapse {
-    margin-right: 5%;
+    margin-right: 3%;
     margin-left: auto;
-    width: 50%;
+    min-width: 50%;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
 }
 .custom-collapse a {
     font-family: 'DM Sans', sans-serif;
@@ -164,27 +176,27 @@ a{
 
 /* TODO: make relative */
 .history {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+
     display: none;
-    position: absolute;
-    top: 50px;
     background-color: #171717;
     max-width: 89%;
+    max-height: 85%;
+
+    overflow-y: auto;
 
     border: #ffd710 solid 1px;
     border-radius: 6px;
-
     border-collapse: collapse;
 
     table-layout: fixed;
     text-align: left;
 }
-.history-title{
-    margin-left: 20px;
-    font-weight: bold;
-}
 .history-title:hover {
-    cursor: pointer;
-    user-select: none;
+    background-color: inherit;
 }
 .history-title:hover + .history {
     display: block;
@@ -895,6 +907,9 @@ a{
 .tabs {
     display: flex;
 }
+.tab:first-child {
+    width: 5vw;
+}
 .tab {
     user-select: none;
     cursor: pointer;
@@ -907,7 +922,6 @@ a{
 }
 .tab:hover, .content form button:hover {
     background-color: #444;
-    color: #F8CA14;
 }
 .content {
     display: none;
@@ -928,8 +942,9 @@ a{
 .content form button{
     color: #FFFFFF;
     background-color: #252525;
-    padding: 10px 20px;
+    padding: 20px;
     border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
 }
 .content form{
     display: flex;
@@ -946,7 +961,7 @@ a{
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 4;
+    z-index: 1000;
 }
 .active {
     display: block;

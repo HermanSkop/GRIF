@@ -16,9 +16,11 @@ head
     title GRIF
 
 .body-container
-    #popup.div.overlay
+    #popup.div.overlay.active
         div.popup
             .tabs
+                .tab.button.back-button(onclick="toggleLogin()")
+                    img(style="transform: rotate(180deg)" src="./images/arrow.png")
                 .tab(onclick="switchLoginContent('login')") Login
                 .tab(onclick="switchLoginContent('register')") Register
             #loginContent.content.active
@@ -52,32 +54,35 @@ head
                 h1(style='font-size: 40px; font-weight: 700; margin: auto;')
                     span(style="color:#FFFFFF; font-family: 'Manrope', sans-serif;") GR
                     span(style='color: #F8CA14') IF
-            div.history-title #{tr.history}
-            if typeof payments !== 'undefined' && payments.length > 0
-                table.history
-                    tr.history-row
-                        th.history-item Name
-                        th.history-item Email
-                        th.history-item Phone
-                        th.history-item Plan
-                        th.history-item Promo
-                        th.history-item Price
-                        th.history-item Date
-                    each payment in payments
-                        tr.history-row
-                            td.history-item #{payment.name}
-                            td.history-item #{payment.email}
-                            td.history-item #{payment.phone}
-                            td.history-item #{payment.plan}
-                            td.history-item #{payment.promo}
-                            td.history-item #{payment.price}
-                            td.history-item #{payment.date}
-            else
-                p.history(style='padding: 10px') #{tr.no_payments}
             button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
                 span.navbar-toggler-icon
             #navbarNav.collapse.navbar-collapse
                 ul.navbar-nav.custom-collapse
+                    li.nav-item(onclick='toggleLogin()')
+                        a.nav-link Login
+                    li.nav-item.history-title
+                        a.nav-link #{tr.history}
+                    if typeof payments !== 'undefined' && payments.length > 0
+                        table.history
+                            tr.history-row
+                                th.history-item Name
+                                th.history-item Email
+                                th.history-item Phone
+                                th.history-item Plan
+                                th.history-item Promo
+                                th.history-item Price
+                                th.history-item Date
+                            each payment in payments
+                                tr.history-row
+                                    td.history-item #{payment.name}
+                                    td.history-item #{payment.email}
+                                    td.history-item #{payment.phone}
+                                    td.history-item #{payment.plan}
+                                    td.history-item #{payment.promo}
+                                    td.history-item #{payment.price}
+                                    td.history-item #{payment.date}
+                    else
+                        p.history(style='padding: 10px') #{tr.no_payments}
                     li.nav-item
                         a.nav-link.active(aria-current='page' href='#speakers') #{tr.speakers}
                     li.nav-item
@@ -88,8 +93,6 @@ head
                         a.nav-link(href='#auditorium') #{tr.auditorium}
                     li.nav-item
                         a.nav-link(href='#plans') #{tr.plans}
-                    li.nav-item(onclick='toggleLogin()')
-                        a.nav-link Login
                     script.
                         function toggleLogin() {
                             const login = document.getElementById('popup');
@@ -419,11 +422,6 @@ head
             h1.main-point #{tr.plans}
             p #{tr.plans_text}
             .plans-container
-                if (discount !== undefined && discount !== 1)
-                    style.
-                        .tariff div p:last-child {
-                            color: #ffcc14;
-                        }
                 .plan
                     img(src='images/camera.png' alt='camera')
                     h2 #{tr.online}
@@ -485,6 +483,11 @@ head
                             | #{tr.exclusive_seats}
                     button(onclick='moveToItem(2)') #{tr.buy_now}
         #request.request
+            if (discount !== undefined && discount !== 1)
+                style.
+                    .tariff div p:last-child {
+                        color: #ffcc14;
+                    }
             h1.main-point #{tr.leave_request}
             p #{tr.leave_request_text}
             .request-container
