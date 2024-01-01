@@ -1,4 +1,5 @@
 const {writeUser} = require('../schemas/user-schema');
+const {isPlan} = require('../schemas/pricing-schema');
 /**
  * Not any request but rather request on participating in the forum.
  * @param {list} inputData - array of strings with the user's name, email, phone number and plan
@@ -40,8 +41,7 @@ function isValidName(name) {
 }
 
 function isValidPlan(plan) {
-    // TODO: validate plan according to the plans in the database, once database is ready
-    return /^[a-zA-Z]{6}$/.test(plan);
+    return isPlan(plan);
 }
 function isValidPromo(promo) {
     return /^[a-zA-Z\d]{6}$/.test(promo) || !promo;

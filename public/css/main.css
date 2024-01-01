@@ -726,7 +726,7 @@ a{
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
-.choose-tariff form{
+.choose-tariff div{
     display: flex;
     box-sizing: border-box;
 }

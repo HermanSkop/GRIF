@@ -1,7 +1,7 @@
 const promosCollection = require('../database/db').promosCollection;
 async function getDiscount(promoCode) {
     let promo = await promosCollection.findOne({ promo: promoCode });
-    return promo.discount;
+    return promo?promo.discount:undefined;
 }
 async function isPromo(promoCode) {
     let promo = await promosCollection.findOne({ promo: promoCode });
