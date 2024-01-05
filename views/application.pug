@@ -41,17 +41,16 @@ p #{tr.leave_request_text}
                     p #{tr.vip}
                     p $#{Math.floor(prices[2].price * (discount === undefined ? 1 : discount))}
         div
-            input#promo.promo-input(placeholder=placeholder=promo?promo:tr.add_promo type='text' name='promo')
+            input#promo.promo-input(placeholder=placeholder = promo ? promo : tr.add_promo type='text' name='promo')
             button(onclick='applyPromo()')
                 svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 16 16' fill='none')
                     path(d='M12.172 7.00017L6.808 1.63617L8.222 0.222168L16 8.00017L8.222 15.7782L6.808 14.3642L12.172 9.00017H0V7.00017H12.172Z' fill='white')
     .credentials-form
         h4 #{tr.fill_form}
-        form(action='/reserve' method='post')
+        form
             input#name(autocomplete='on' placeholder=tr.name type='text' name='name')
-            input#email(autocomplete='on' placeholder=tr.email type='text' name='email')
-            input#phone(autocomplete='on' placeholder=tr.phone type='text' name='phone')
+            input#email(autocomplete='on' placeholder=tr.email type='email' name='email')
+            input#phone(autocomplete='on' placeholder=tr.phone type='phone' name='phone')
             div
-                button.main-button(type='submit') #{tr.pay}
+                a.main-button(onclick='submitApplication()') #{tr.pay}
                 p(id='total_price')
-

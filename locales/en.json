@@ -133,6 +133,42 @@
   "contact_us": "Contact us",
 
   "history": "Payment history",
-  "no_payments": "No payments yet"
+  "no_payments": "No payments yet",
+
+  "error": "Error",
+  "error_text": "An error occurred try again later",
+    "invalid_promo": "Invalid promo code",
+    "invalid_fields_size": "Invalid number of fields in request",
+    "invalid_fields_size_text": "The number of fields in the request does not match the expected",
+    "invalid_name": "Invalid name",
+      "invalid_name_text": "The name must contain only letters and spaces",
+    "invalid_email": "Invalid email",
+      "invalid_email_text": "The email must be in the format example@exmpl.com",
+    "invalid_phone": "Invalid phone number",
+      "invalid_phone_text": "The phone number must be 8-10 digits long",
+    "invalid_plan": "Invalid plan",
+      "invalid_plan_text": "The plan is not selected or does not exist",
+    "invalid_password_or_username": "Invalid password or username",
+    "oops_error": "Oops, something went wrong",
+      "oops_error_text": "We're sorry, but it seems that an error occurred. Please try again later.",
+    "invalid_password": "Invalid password",
+      "invalid_password_text": "The password must be 8-10 characters long ",
+    "invalid_username": "Invalid username",
+        "invalid_username_text": "The username must be 3-20 characters long, contain only letters, numbers, and underscores",
+  "logout": "Logout",
+    "logout_message": "Logged out successfully",
+  "login": "Login",
+    "login_message": "Logged in successfully",
+  "register": "Register",
+    "register_message": "Registered successfully",
+
+  "username": "Username",
+  "password": "Password",
+  "hello_again": "Hello again!",
+  "welcome": "Join us!",
+
+  "purchase_completed": "Purchase is completed successfully",
+  "not_logged_in": "You are not logged in",
+    "not_logged_in_text": "You need to log in to perform this action"
 }
 

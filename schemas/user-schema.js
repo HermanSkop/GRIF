@@ -1,15 +1,26 @@
-const usersCollection = require('../database/db').usersCollection;
+const userCollection = require('../database/db').userCollection;
 const isPromo = require('../schemas/promo-schema').isPromo;
 
 async function getUsersByMail(email) {
-    return await usersCollection.find({email: email}).toArray();
+    return await userCollection.find({email: email}).toArray();
 }
-async function writeUser(user) {
-    if (!user.promo || await isPromo(user.promo)) return await usersCollection.insertOne(user);
-    else throw new Error('Promo code is not valid, user not created');
+async function getUser(username) {
+    const user = await userCollection.findOne({username: username});
+    return user?user:undefined;
 }
-
+async function insertUser(username, password, role) {
+    return await userCollection.insertOne({
+        username: username,
+        password: password,
+        role: role
+    });
+}
+async function isCorrectUser(username, password, role){
+    const user = await userCollection.findOne({username: username});
+    return user && user.password === password && user.role === role;
+}
 module.exports = {
-    getUsersByMail,
-    writeUser
+    getUser,
+    insertUser: insertUser,
+    isCorrectUser
 }

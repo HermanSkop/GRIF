@@ -5,7 +5,7 @@ async function isPlan(plan){
 }
 async function getPrice(plan){
     let pricing = await pricingCollection.findOne({plan: plan})
-    return pricing.price;
+    return pricing?pricing.price:undefined;
 }
 async function getPlans(){
     return await pricingCollection.find({}).toArray();

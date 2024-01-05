@@ -48,7 +48,7 @@ An application has a new dropdown table, which is populated with data user input
 To insert data into the table, you need to fill the form and press the button.
 
 Although the table does not fetch data from the database (bc there is no user validation), the data gathered from the form
-is inserted into the database. [request-handler.js](handlers/request-handler.js) contains the logic for validating and
+is inserted into the database. [purchase-service.js](services/purchase-service.js) contains the logic for validating and
 inserting data into the database.
 
 ![img.png](public/images/sample-images/img.png)

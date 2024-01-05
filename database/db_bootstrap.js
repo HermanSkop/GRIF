@@ -1,40 +1,55 @@
 const connectToDatabase = require('./db').connectToDatabase;
 const client = require('./db').client;
 
-module.exports.connectToDatabase = connectToDatabase;
-module.exports.client = client;
+const purchaseCollection = require('./db').purchaseCollection;
+const promosCollection = require('./db').promosCollection;
+const pricingCollection = require('./db').pricingCollection;
+const userCollection = require('./db').userCollection;
 
-let usersCollection;
-let promosCollection;
-let pricingCollection;
-
-async function insertSampleData(db) {
-    await db.collection('users').insertMany([
-        { name: 'John Doe', email: 'john@example.com', phone: '123-456-7890', plan: 'online', promo: 'xxxxxx' },
-        { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210', plan: 'standard', promo: 'AAAAAA' },
+async function insertSampleData() {
+    await userCollection.insertMany([
+        { username: 'john_doe', password: 'password123', role: 'customer' },
+        { username: 'jane_smith', password: 'password456', role: 'customer' },
+        { username: 'a', password: 'a', role: 'admin' },
     ]);
 
-    await db.collection('promos').insertMany([
-        { promo: 'xxxxxx', discount: 0.3 },
-        { promo: 'AAAAAA', discount: 0 },
+    await purchaseCollection.insertMany([
+        { username: 'john_doe', name: 'John Doe', email: 'john@example.com', phone: '123-456-7890', plan: 'online', promo: 'xxxxxx', date: new Date() },
+        { username: 'jane_smith', name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210', plan: 'standard', promo: 'AAAAAA', date: new Date() },
     ]);
 
-    await db.collection('pricing').insertMany([
+    await promosCollection.insertMany([
+        { promo: 'xxxxxx', discount: 0.3, used: false },
+        { promo: 'AAAAAA', discount: 0, used: false },
+    ]);
+
+    await pricingCollection.insertMany([
         { plan: 'online', price: 100 },
         { plan: 'standard', price: 200 },
         { plan: 'vip', price: 300 },
     ]);
 }
-async function createUsersCollection() {
+
+async function createUserCollection() {
     try {
-        await usersCollection.createIndex({ name: 1 }, { unique: true });
-        await usersCollection.createIndex({ email: 1 }, { unique: true });
-        await usersCollection.createIndex({ phone: 1 }, { unique: true });
+        await userCollection.createIndex({ username: 1 }, { unique: true });
     } catch (error) {
-        console.error('Error creating the `users` collection:', error);
+        console.error('Error creating the `user` collection:', error);
         throw error;
     }
 }
+
+async function createPurchasesCollection() {
+    try {
+        await purchaseCollection.dropIndexes();
+
+        await purchaseCollection.createIndex({ username: 1 }, { foreignKey: { ref: 'user', field: 'username' } });
+    } catch (error) {
+        console.error('Error creating the `purchases` collection:', error);
+        throw error;
+    }
+}
+
 async function createPromosCollection() {
     try {
         await promosCollection.createIndex({ promo: 1 });
@@ -43,6 +58,7 @@ async function createPromosCollection() {
         throw error;
     }
 }
+
 async function createPricingCollection() {
     try {
         await pricingCollection.createIndex({ plan: 1 });
@@ -51,27 +67,15 @@ async function createPricingCollection() {
         throw error;
     }
 }
-async function createForeignKeyConstraint() {
-    try {
-        await usersCollection.createIndex({ promo: 1 }, { foreignKey: { ref: 'promos', field: 'promo' } });
-    } catch (error) {
-        console.error('Error creating the foreign key constraint:', error);
-        throw error;
-    }
-}
+
 async function main() {
     try {
         const db = await connectToDatabase();
 
-        usersCollection = await db.createCollection('users')
-        promosCollection = await db.createCollection('promos')
-        pricingCollection  = await db.createCollection('pricing')
-
-        await createUsersCollection(db);
+        await createUserCollection();
+        await createPurchasesCollection();
         await createPromosCollection();
         await createPricingCollection();
-
-        await createForeignKeyConstraint();
 
         await insertSampleData(db);
         console.log('Database bootstrapped successfully');

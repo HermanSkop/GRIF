@@ -4,7 +4,7 @@ html
 
   body(style=`background-color: rgb(248, 202, 20); color: #171717; text-align: center; font-family: 'Arial', sans-serif;`)
     div(style='margin: 10% auto; max-width: 400px;')
-      h1 #{title===undefined?'Oops! Something went wrong.':title}
-      p #{message===undefined?'We\'re sorry, but it seems that an error occurred.':message}
+      h1 #{title?title:'Oops, something went wrong'}
+      p #{message?message:'We\'re sorry, but it seems that an error occurred. Please try again later.'}
       a(href='/', style='text-decoration: none; color: #171717; display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: rgb(248, 202, 20); border-radius: 5px;')
         | Return to the homepage
