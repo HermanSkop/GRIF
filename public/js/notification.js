@@ -1,9 +1,13 @@
 const notificationTimeout = 4000;
-
+let timeout;
 async function notify(htmlError) {
-    document.getElementById('notification').classList.add('showError');
-    document.getElementById('notification').innerHTML = htmlError;
-    setTimeout(function () {document.getElementById('notification').classList.remove('showError');},
+    let notification = document.getElementById('notification');
+    notification.classList.add('showError');
+    notification.innerHTML = htmlError;
+    timeout?clearTimeout(timeout):null;
+    timeout = setTimeout(
+        function () {
+            document.getElementById('notification').classList.remove('showError');
+        },
         notificationTimeout);
-    // TODO timeout visual bug fix
 }
