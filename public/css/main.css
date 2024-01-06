@@ -255,28 +255,28 @@ a{
     display: flex;
     align-items: center;
 }
-.item .card-side{
+.card-item .card-side{
     background: radial-gradient(circle at center, transparent -400%, #232323 70%) no-repeat fixed;
     background-size: 125% 150%;
     border: #4F4F4F solid 1px;
     font-family: "Proxima Nova", sans-serif;
     color: #FFFFFF;
 }
-.card-container .item .front{
+.card-container .card-item .front{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.carousel .item.active{
+.carousel .card-item.active{
     height: 450px;
     width: 400px;
 }
-.carousel .item.next{
+.carousel .card-item.next{
     height: 350px;
     width: 300px;
 }
-.carousel .item.prev{
+.carousel .card-item.prev{
     height: 350px;
     width: 300px;
 }
@@ -1046,15 +1046,15 @@ a{
         margin: 0 auto;
     }
 
-    .carousel .item.active{
+    .carousel .card-item.active{
         height: 50vw;
         width: 40vw;
     }
-    .carousel .item.prev {
+    .carousel .card-item.prev {
         height: 35vw;
         width: 25vw;
     }
-    .carousel .item.next {
+    .carousel .card-item.next {
         height: 35vw;
         width: 25vw;
     }

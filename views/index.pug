@@ -50,7 +50,7 @@ head
             #navbarNav.collapse.navbar-collapse
                 ul.navbar-nav.custom-collapse
                     li.nav-item(id='user-register', onclick='toggleLogin()')
-                        a.nav-link Login
+                        a.nav-link #{tr.login}
                     li(id='history').nav-item.history-title.hidden
                         a.nav-link #{tr.history}
                     if purchases
@@ -168,7 +168,7 @@ head
             // TODO: resolve title visual bug
             .card-container
                 .carousel.card-content
-                    .item.active.card(onclick='flip(event)')
+                    .card-item.active.card(onclick='flip(event)')
                         .card-side.front(style='background-color: #4DE3ED;')
                             div(style='position: relative; width: 100%; height: 100%')
                                 .top-description
@@ -183,7 +183,7 @@ head
                             img.person-card-image(src='images/1.png' alt='')
                         .card-side.back(style='background-color: #4DE3ED;')
                             div #{tr.speakers_list[0].background}
-                    .item.next.card(onclick='flip(event)')
+                    .card-item.next.card(onclick='flip(event)')
                         .card-side.front(style='background-color: #ffd710;')
                             div(style='position: relative; width: 100%; height: 100%')
                                 .top-description
@@ -198,7 +198,7 @@ head
                             img.person-card-image(src='images/1.png' alt='')
                         .card-side.back(style='background-color: #ffd710;')
                             div #{tr.speakers_list[1].background}
-                    .item.card(onclick='flip(event)')
+                    .card-item.card(onclick='flip(event)')
                         .card-side.front(style='background-color: #ff1010;')
                             div(style='position: relative; width: 100%; height: 100%')
                                 .top-description
@@ -213,7 +213,7 @@ head
                             img.person-card-image(src='images/1.png' alt='')
                         .card-side.back(style='background-color: #ff1010;')
                             div #{tr.speakers_list[2].background}
-                    .item.prev.card(onclick='flip(event)')
+                    .card-item.prev.card(onclick='flip(event)')
                         .card-side.front(style='background-color: #60d041;')
                             div(style='position: relative; width: 100%; height: 100%')
                                 .top-description

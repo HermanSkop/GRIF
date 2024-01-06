@@ -1,8 +1,9 @@
-// I will be creating a different pen with touch support but right // now I have no time for it due to school
-
 const slider = document.querySelector(".carousel");
-		const slides = document.querySelectorAll(".item");
-		const button = document.querySelectorAll(".button");
+		const slides = document.querySelectorAll(".card-item");
+		const button = document.querySelectorAll(".fas");
+
+		console.log(slides);
+		console.log(button);
 
 		let current = 0;
 		let prev = 2;
