@@ -2,19 +2,7 @@ function moveToItem(index) {
     document.getElementById('tariffs').scrollIntoView({behavior: 'smooth', block: 'center'});
     chooseItem(index);
 }
-async function validatePromo(promo) {
-    let valid = false;
-    fetch('/validate/promo?promo=' + promo)
-        .then(async response => {
-            if (response.status !== 200) {
-                throw await response.text();
-            } else valid = true;
-        })
-        .catch(errorHtml => {
-            notify(errorHtml);
-        });
-    return valid;
-}
+
 function chooseItem(index) {
     let item = document.getElementById('tariffs').getElementsByTagName('li')[index];
     fetch('/prices')
@@ -32,25 +20,32 @@ function chooseItem(index) {
         })
 }
 
-function applyPromo() {
+async function applyPromo() {
     const promo = document.getElementById('promo').value;
-    if (validatePromo(promo)) {
-        fetch('/promo', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({promo: promo}),
+    fetch('/promo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({promo: promo}),
+    })
+        .then(async response => {
+            if (response.status !== 200) {
+                await notify(await response.text());
+                throw new Error();
+            }
+            return response;
         })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('plans').innerHTML = data.plansSection;
-                document.getElementById('request').innerHTML = data.applicationSection;
-            });
-    }
+        .then(response => response.json())
+        .then(async res => {
+            await notify(res.message);
+            document.getElementById('plans').innerHTML = res.plansSection;
+            document.getElementById('request').innerHTML = res.applicationSection;
+        })
+        .catch(err => {});
 }
 
-function submitApplication(){
+function submitApplication() {
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
@@ -73,9 +68,16 @@ function submitApplication(){
         .then(response => response.json())
         .then(async res => {
             await notify(res.message);
-            updateHistory();
+            document.getElementById('history-table').innerHTML = res.history;
+            await updateHistory();
         })
         .catch(() => {
 
         });
 }
+function resetPlanCookie() {
+    document.cookie = 'plan=; path=/reserve';
+}
+document.addEventListener('DOMContentLoaded', function() {
+    resetPlanCookie();
+});

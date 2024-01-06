@@ -1,55 +1,56 @@
 const express = require('express');
 const router = express.Router();
-const handleRequest = require('../services/purchase-service');
-const handlePromoCode = require('../services/promo-sevice');
+const {getHistory, makePurchase} = require('../services/purchase-service');
+const {handlePromoCode} = require('../services/promo-service');
 const {getPlans} = require('../schemas/pricing-schema');
-const {isPromo} = require('../schemas/promo-schema');
+const {isPromo, getDiscount} = require('../schemas/promo-schema');
 const path = require("path");
 const {readFileSync} = require("fs");
 const renderPromoViews = async (req, res, next) => {
     try {
-        req.session.promo = await isPromo(req.body.promo) ? req.body.promo : undefined;
-        req.session.discount = await handlePromoCode(req.body.promo);
-        const responseBody = {};
-        res.render('application', getIndexParameters(req), (err, html) => {
-            if (err) next(err, req, res);
-            else {
-                responseBody.applicationSection = html;
-                res.render('plans', getIndexParameters(req), (err, html) => {
-                    if (err) next(err, req, res);
-                    else {
-                        responseBody.plansSection = html;
-                        res.json(responseBody);
-                    }
+        if(!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
+        if(!await isPromo(req.body.promo)) throw {message: 'invalid_promo', isNotification: true};
+        req.session.promo = req.body.promo;
+        req.session.user.discount = await handlePromoCode(req.body.promo);
+        console.log(req.prices);
+        res.render('application', await getIndexParameters(req), async (err, html) => {
+            let applicationSection = html;
+            if (err) throw err;
+            res.render('plans', await getIndexParameters(req), (err, html) => {
+                let plansSection = html;
+                if (err) throw err;
+                res.status(200).json({
+                    applicationSection: applicationSection,
+                    plansSection: plansSection,
+                    message: res.__('promo_applied')
                 });
-            }
+            });
         });
-    }
-    catch (err) {
-        next(err, req, res, next)
+    } catch (err) {
+        next(err, req, res, next);
     }
 };
-function getIndexParameters(req) {
+const pug = require('pug');
+async function getIndexParameters(req) {
     return {
         promo: req.session.promo,
+        discount: await getDiscount(req.session.promo),
         prices: req.prices,
-        discount: req.session.discount,
-        payments: req.session.payments,
+        purchases: req.session.user ? await getHistory(req.session.user.username) : undefined
     }
 }
 
 router.use(express.urlencoded({extended: true}));
-router.get('/', function (req, res) {
+router.get('/', async function (req, res) {
     try {
-        res.render('index', getIndexParameters(req));
-    }
-    catch (err) {
+        res.render('index', await getIndexParameters(req));
+    } catch (err) {
         next(err, req, res, next)
     }
 });
 router.post('/reserve', async function (req, res, next) {
     try {
-        await handleRequest({
+        await makePurchase({
             username: req.session.user.username,
             password: req.session.user.password,
             role: req.session.user.role,
@@ -60,14 +61,19 @@ router.post('/reserve', async function (req, res, next) {
             promo: req.session.promo
         })
             .then(async () => {
-                res.status(200).json({message: res.__('purchase_completed')});
+                res.status(200).render('history', await getIndexParameters(req), (err, html) => {
+                    if (err) throw err;
+                    res.status(200).json({
+                        historySection: html,
+                        message: res.__('purchase_completed')
+                    });
+                });
             })
             .catch(err => {
                 err.isNotification = true;
                 next(err, req, res, next);
             });
-    }
-    catch (err) {
+    } catch (err) {
         err.title = 'not_logged_in';
         err.message = 'not_logged_in_text';
         err.isNotification = true;
@@ -90,8 +96,7 @@ router.get('/deadline', async function (req, res, next) {
 router.get('/prices', async function (req, res) {
     try {
         res.json(await getPlans());
-    }
-    catch (err) {
+    } catch (err) {
         err.message = 'Not possible to get prices';
         err.isNotification = true;
         next(err, req, res, next)

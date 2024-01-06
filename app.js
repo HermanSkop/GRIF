@@ -11,9 +11,8 @@ const winston = require('winston');
 const expressWinston = require('express-winston');
 const indexRouter = require('./routers/index').indexRouter;
 const userRouter = require('./routers/user').userRouter;
-const validatorRouter = require('./routers/validator').validatorRouter;
 const {getPlans} = require('./schemas/pricing-schema');
-const defaultPricesMiddleware = async (req, res, next) => {
+const defaultNamingMiddleware = async (req, res, next) => {
     req.prices = await getPlans() || [];
     next();
 };
@@ -24,9 +23,7 @@ i18n.configure({
   objectNotation: true,
 
 });
-
 const app = express();
-const fs = require('fs');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -56,10 +53,9 @@ app.use(expressWinston.logger({
         winston.format.json()
     )
 }));
-app.use(defaultPricesMiddleware);
+app.use(defaultNamingMiddleware);
 
 app.use('/', indexRouter);
-app.use('/validate', validatorRouter);
 app.use('/user', userRouter);
 app.use('/static', express.static('public'));
 
@@ -80,6 +76,5 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = {
-    app,
-    i18n
+    app
 };

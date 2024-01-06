@@ -24,6 +24,18 @@ function switchStatus(func, buttonText) {
     loginRegister.onclick = func;
     loginRegister.firstChild.textContent = buttonText;
     history.classList.toggle('hidden');
+    updateHistory();
+}
+async function updateHistory(){
+    fetch('/user/purchases')
+        .then(async response => {
+            return response;
+        })
+        .then(response => response.json())
+        .then(res => {
+            document.getElementById('history-table').innerHTML = res.history;
+        })
+        .catch(error => {});
 }
 async function logout() {
     fetch('/user/logout')
@@ -90,4 +102,6 @@ async function login() {
             await notify(errorHtml);
         });
 }
-
+document.addEventListener('DOMContentLoaded', function() {
+    updateHistory();
+});

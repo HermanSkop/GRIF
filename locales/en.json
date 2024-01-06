@@ -15,25 +15,21 @@
     {
       "name": "Dr. Emily Chen",
       "occupation": "Chief Economist",
-      "forum_date": "March 18, 2023",
       "background": "Renowned economist with extensive experience in analyzing global economic trends. Known for accurate predictions on market shifts."
     },
     {
       "name": "Marcus Rodriguez",
       "occupation": "Managing Director",
-      "forum_date": "March 18, 2023",
       "background": "Driving force in integrating environmental, social, and governance (ESG) factors into investment strategies. Focuses on sustainable finance."
     },
     {
       "name": "Sarah Ahmed",
       "occupation": "Technology Analyst",
-      "forum_date": "March 18, 2023",
       "background": "Specializes in identifying disruptive trends and innovative companies in the technology sector."
     },
     {
       "name": "Javier Morales",
       "occupation": "Portfolio Manager",
-      "forum_date": "March 18, 2023",
       "background": "Portfolio manager with a focus on emerging markets. Brings experience managing portfolios in diverse and dynamic economies."
     }
   ],
@@ -83,6 +79,8 @@
 
   "forum_date_short": "18 March",
   "city": "LONDON",
+  "date": "Date",
+  "price": "Price",
 
   "participants_list": [
     "Real Estate Investment Strategist",
@@ -125,7 +123,8 @@
     "phone": "Phone №",
     "pay": "Pay",
   "add_promo": "Add Promo Code",
-  "plan": "Choose a plan",
+  "plan": "Plan",
+  "choose_plan": "Choose a plan",
   "plan_text": "Know more about our plans above",
 
   "questions_left": "Questions left?",
@@ -133,7 +132,7 @@
   "contact_us": "Contact us",
 
   "history": "Payment history",
-  "no_payments": "No payments yet",
+  "no_purchases": "There are not purchases yet",
 
   "error": "Error",
   "error_text": "An error occurred try again later",
@@ -169,6 +168,9 @@
 
   "purchase_completed": "Purchase is completed successfully",
   "not_logged_in": "You are not logged in",
-    "not_logged_in_text": "You need to log in to perform this action"
+    "not_logged_in_text": "You need to log in to perform this action",
+
+  "promo": "Promo code",
+  "promo_applied": "Promo code applied"
 }
 

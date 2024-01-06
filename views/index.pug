@@ -53,27 +53,31 @@ head
                         a.nav-link Login
                     li(id='history').nav-item.history-title.hidden
                         a.nav-link #{tr.history}
-                    if typeof payments !== 'undefined' && payments.length > 0
-                        table.history
-                            tr.history-row
-                                th.history-item Name
-                                th.history-item Email
-                                th.history-item Phone
-                                th.history-item Plan
-                                th.history-item Promo
-                                th.history-item Price
-                                th.history-item Date
-                            each payment in payments
+                    if purchases
+                        table#history-table.history
+                            thead
                                 tr.history-row
-                                    td.history-item #{payment.name}
-                                    td.history-item #{payment.email}
-                                    td.history-item #{payment.phone}
-                                    td.history-item #{payment.plan}
-                                    td.history-item #{payment.promo}
-                                    td.history-item #{payment.price}
-                                    td.history-item #{payment.date}
+                                    th.history-item #{name}
+                                    th.history-item #{email}
+                                    th.history-item #{phone}
+                                    th.history-item #{plan}
+                                    th.history-item #{promo_name}
+                                    th.history-item #{price}
+                                    th.history-item #{date}
+                            tbody
+                                each purchase in purchases
+                                    tr.history-row
+                                        td.history-item #{purchase.name}
+                                        td.history-item #{purchase.email}
+                                        td.history-item #{purchase.phone}
+                                        td.history-item #{purchase.plan}
+                                        td.history-item #{purchase.promo}
+                                        td.history-item #{purchase.price}
+                                        td.history-item #{purchase.date.getDate() + '.' + (purchase.date.getMonth() + 1) + '.' + purchase.date.getFullYear()}
                     else
-                        p.history(style='padding: 10px') #{tr.no_payments}
+                        table#history-table.history(style='padding: 10px')
+                            tr
+                                td #{tr.no_purchases}
                     li.nav-item
                         a.nav-link.active(aria-current='page' href='#speakers') #{tr.speakers}
                     li.nav-item
@@ -172,7 +176,7 @@ head
                                     h1 #{tr.speakers_list[0].occupation}
                                 .bottom-description
                                     h4 #{tr.forum}:
-                                    h4 #{tr.speakers_list[0].forum_date}
+                                    h4 #{tr.forum_date}
                                     a(href="#plans")
                                         button.card-button #{tr.buy_ticket}
                                             img(src='images/arrow.png' alt='')
@@ -187,7 +191,7 @@ head
                                     h1 #{tr.speakers_list[1].occupation}
                                 .bottom-description
                                     h4 #{tr.forum}:
-                                    h4 #{tr.speakers_list[1].forum_date}
+                                    h4 #{tr.forum_date}
                                     a(href="#plans")
                                         button.card-button #{tr.buy_ticket}
                                             img(src='images/arrow.png' alt='')
@@ -202,7 +206,7 @@ head
                                     h1 #{tr.speakers_list[2].occupation}
                                 .bottom-description
                                     h4 #{tr.forum}:
-                                    h4 #{tr.speakers_list[2].forum_date}
+                                    h4 #{tr.forum_date}
                                     a(href="#plans")
                                         button.card-button #{tr.buy_ticket}
                                             img(src='images/arrow.png' alt='')
@@ -217,7 +221,7 @@ head
                                     h1 #{tr.speakers_list[3].occupation}
                                 .bottom-description
                                     h4 #{tr.forum}:
-                                    h4 #{tr.speakers_list[3].forum_date}
+                                    h4 #{tr.forum_date}
                                     a(href="#plans")
                                         button.card-button #{tr.buy_ticket}
                                             img(src='images/arrow.png' alt='')
@@ -476,7 +480,7 @@ head
             p #{tr.leave_request_text}
             .request-container
                 .choose-tariff
-                    h2 #{tr.plan}
+                    h2 #{tr.choose_plan}
                     p #{tr.plan_text}
                     ul#tariffs
                         li.tariff(onclick='chooseItem(0)')

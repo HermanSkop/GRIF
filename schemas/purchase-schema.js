@@ -11,7 +11,11 @@ async function insertPurchase(username, name, email, phone, plan, promo) {
         date: new Date()
     });
 }
+async function getPurchases(username) {
+    return await purchaseCollection.find({username: username}).toArray();
+}
 
 module.exports = {
-    insertPurchase: insertPurchase
+    insertPurchase,
+    getPurchases
 }
