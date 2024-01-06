@@ -15,6 +15,7 @@ head
     script(src='js/plans.js')
     script(src='js/notification.js')
     script(src='js/user.js')
+    script(src='js/cards.js')
     title GRIF
 
 .body-container
@@ -233,14 +234,6 @@ head
                             img(style='transform: rotate(180deg)' src='images/arrow.png' alt='')
                         .button.fas.fa-angle-right
                             img(src='images/arrow.png' alt='')
-                    script.
-                        buttons = document.querySelectorAll('.item');
-                        function flip(event) {
-                        if (!event.target.classList.contains("card-button")) {
-                        event.target.closest(".item").classList.toggle("clicked");
-                        }
-                        }
-                script(src='js/cards.js')
         #schedule.section
         .schedule-container
             h1.main-point #{tr.forum_program}
