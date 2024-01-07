@@ -162,5 +162,8 @@
 	"promo": "Промокод",
 	"promo_applied": "Промокод применен",
 	"not_found_txt": "Страница которую вы ищете не найдена",
-	"return_home": "Вернуться на главную страницу"
+	"return_home": "Вернуться на главную страницу",
+	"language_changed": "language_changed",
+	"cant_change_language": "Не удалось изменить язык"
+
 }

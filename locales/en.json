@@ -174,7 +174,9 @@
   "promo_applied": "Promo code applied",
 
   "not_found_txt": "Page you are looking for is not found",
-  "return_home": "Return to the homepage"
+  "return_home": "Return to the homepage",
+
+  "cant_change_language": "It is impossible to change the language"
 
 }
 

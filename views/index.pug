@@ -16,6 +16,7 @@ head
     script(src='js/notification.js')
     script(src='js/user.js')
     script(src='js/cards.js')
+    script(src='js/language.js')
     title GRIF
 
 .body-container
@@ -50,6 +51,12 @@ head
                 span.navbar-toggler-icon
             #navbarNav.collapse.navbar-collapse
                 ul.navbar-nav.custom-collapse
+                    li.language-toggler-container
+                        .language-toggler
+                            button.language-btn.language-active#en-language(onclick="changeLanguage('en')")
+                                img(src="./images/uk-flag.svg" alt="Eng")
+                            button.language-btn#ru-language(onclick="changeLanguage('ru')")
+                                img(src="./images/rus-flag.svg" alt="Ru")
                     li.nav-item(id='user-register', onclick='toggleLogin()')
                         a.nav-link #{tr.login}
                     li(id='history').nav-item.history-title.hidden

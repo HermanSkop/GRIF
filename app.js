@@ -42,7 +42,8 @@ app.use(i18n.init);
 app.use(i18ne({
     translationsPath: path.join(__dirname, 'locales'),
     siteLangs: ['en', 'ru'],
-    textsVarName: 'tr'
+    textsVarName: 'tr',
+    cookieLangName: 'lang',
 }));
 app.use(expressWinston.logger({
     transports: [

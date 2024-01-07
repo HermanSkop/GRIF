@@ -36,12 +36,13 @@ async function getIndexParameters(req) {
         promo: req.session.promo,
         discount: await getDiscount(req.session.promo),
         prices: req.prices,
-        purchases: req.session.user ? await getHistory(req.session.user.username) : undefined
+        purchases: req.session.user ? await getHistory(req.session.user.username) : undefined,
+        req: req.session.lang
     }
 }
 
 router.use(express.urlencoded({extended: true}));
-router.get('/', async function (req, res) {
+router.get('/', async function (req, res, next) {
     try {
         res.render('index', await getIndexParameters(req));
     } catch (err) {
@@ -93,7 +94,7 @@ router.get('/deadline', async function (req, res, next) {
         next(err, req, res, next)
     }
 });
-router.get('/prices', async function (req, res) {
+router.get('/prices', async function (req, res, next) {
     try {
         res.json(await getPlans());
     } catch (err) {
@@ -103,6 +104,16 @@ router.get('/prices', async function (req, res) {
     }
 });
 router.post('/promo', renderPromoViews);
+router.post('/lang', async function (req, res, next) {
+    try {
+        req.session.lang = req.body.lang;
+        res.status(200).json({message: res.__('language_changed')});
+    } catch (err) {
+        err.message = 'cant_change_language';
+        err.isNotification = true;
+        next(err, req, res, next);
+    }
+});
 
 module.exports.indexRouter = router;
 module.exports.getIndexParameters = getIndexParameters;
