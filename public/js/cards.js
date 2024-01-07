@@ -8,10 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	const slides = document.querySelectorAll(".card-item");
 	const button = document.querySelectorAll(".fas");
 
-
-	console.log(slides);
-	console.log(button);
-
 	let current = 0;
 	let prev = 2;
 	let next = 1;

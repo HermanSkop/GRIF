@@ -74,7 +74,12 @@ app.use(function (err, req, res, next) {
         });
     }
 });
-
+app.use((req, res) => {
+    res.status(404).render('error', {
+        title: '404',
+        message: res.__('not_found_txt'),
+    });
+});
 module.exports = {
     app
 };

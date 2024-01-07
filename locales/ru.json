@@ -160,5 +160,7 @@
 		"renderFile is not a function": "res.renderFile is not a function"
 	},
 	"promo": "Промокод",
-	"promo_applied": "Промокод применен"
+	"promo_applied": "Промокод применен",
+	"not_found_txt": "Страница которую вы ищете не найдена",
+	"return_home": "Вернуться на главную страницу"
 }
