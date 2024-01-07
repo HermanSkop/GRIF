@@ -104,16 +104,6 @@ router.get('/prices', async function (req, res, next) {
     }
 });
 router.post('/promo', renderPromoViews);
-router.post('/lang', async function (req, res, next) {
-    try {
-        req.session.lang = req.body.lang;
-        res.status(200).json({message: res.__('language_changed')});
-    } catch (err) {
-        err.message = 'cant_change_language';
-        err.isNotification = true;
-        next(err, req, res, next);
-    }
-});
 
 module.exports.indexRouter = router;
 module.exports.getIndexParameters = getIndexParameters;
