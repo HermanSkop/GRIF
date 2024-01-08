@@ -29,13 +29,13 @@ function switchStatus(func, buttonText) {
 async function updateHistory(){
     fetch('/user/purchases')
         .then(async response => {
+            if (!response || response.status !== 200) await notify(response.text());
             return response;
         })
         .then(response => response.json())
         .then(res => {
             document.getElementById('history-table').innerHTML = res.history;
         })
-        .catch(error => {});
 }
 async function logout() {
     fetch('/user/logout')
@@ -65,16 +65,13 @@ async function register() {
 
     fetch('/user/register?' + 'username=' + username + '&password=' + password)
         .then(async response => {
-            if (response.status !== 200) throw await response.text();
+            if (response.status !== 200) await notify(response.text());
             return response;
         })
         .then(response => response.json())
         .then(async res => {
             await notify(res.loginMessage);
             switchStatus(logout, res.logout);
-        })
-        .catch(errorHtml => {
-            notify(errorHtml);
         });
 }
 async function login() {
@@ -102,6 +99,17 @@ async function login() {
             await notify(errorHtml);
         });
 }
+async function loginOnLoad(){
+    fetch('/user')
+        .then(async response => {
+            if (!response || response.status !== 200) await notify(response.text());
+            return response;
+        })
+        .then(response => response.json())
+        .then(async res => {
+            res.user.username?switchStatus(logout, res.logout):switchStatus(toggleLogin, res.login);
+        })
+}
 document.addEventListener('DOMContentLoaded', function() {
-    updateHistory();
+    loginOnLoad().then(() => updateHistory);
 });

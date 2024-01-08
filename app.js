@@ -17,11 +17,11 @@ const defaultNamingMiddleware = async (req, res, next) => {
     next();
 };
 i18n.configure({
-  locales: ['en', 'ru'],
-  defaultLocale: 'en',
-  directory: __dirname + '/locales',
-  objectNotation: true,
-
+    locales: ['en', 'ru'],
+    defaultLocale: 'en',
+    directory: __dirname + '/locales',
+    objectNotation: true,
+    cookie: 'lang',
 });
 const app = express();
 
@@ -62,13 +62,12 @@ app.use('/static', express.static('public'));
 
 app.use(function (err, req, res, next) {
     console.error(err);
-    if (err.isNotification){
+    if (err.isNotification) {
         res.status(400).render('error-notification', {
-            title: res.__(err.title?err.title:'error'),
-            message: res.__(err.message?err.message:'error_text'),
+            title: res.__(err.title ? err.title : 'error'),
+            message: res.__(err.message ? err.message : 'error_text'),
         });
-    }
-    else {
+    } else {
         res.status(500).render('error', {
             title: res.__('error'),
             message: res.__('error_text'),

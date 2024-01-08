@@ -1,5 +1,5 @@
 function changeLanguage(lang) {
-    document.cookie = 'lang=' + lang;
+    document.cookie = 'lang=' + lang+';';
     window.location.reload();
 }
 document.addEventListener('DOMContentLoaded', ()=>{

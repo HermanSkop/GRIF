@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const {login, register} = require('../services/user-service');
 const getIndexParameters = require('./index').getIndexParameters;
+router.get('/', async function (req, res, next) {
+    try {
+        res.status(200).json({
+            logout: res.__('logout'),
+            loginMessage: res.__('login_message'),
+            user: req.session.user
+        });
+    } catch (err) {
+        next(err, req, res, next);
+    }
+});
 router.get('/login', async function (req, res, next) {
     login(req.query.username, req.query.password)
         .then(user => {
@@ -41,5 +52,5 @@ router.get('/purchases', async function (req, res, next) {
     } catch (err) {
         next(err, req, res, next);
     }
-})
-;module.exports.userRouter = router;
+});
+module.exports.userRouter = router;
