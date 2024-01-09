@@ -4,12 +4,14 @@ const {login, register} = require('../services/user-service');
 const getIndexParameters = require('./index').getIndexParameters;
 router.get('/', async function (req, res, next) {
     try {
+        if(!req.session.user) throw new Error('not_logged_in');
         res.status(200).json({
             logout: res.__('logout'),
             loginMessage: res.__('login_message'),
             user: req.session.user
         });
     } catch (err) {
+        err.clientIgnore = true;
         next(err, req, res, next);
     }
 });
@@ -18,10 +20,11 @@ router.get('/login', async function (req, res, next) {
         .then(user => {
             req.session.user = user;
             res.status(200).json({logout: res.__('logout'), loginMessage: res.__('login_message')});
-        }).catch(err => {
-        err.isNotification = true;
-        next(err, req, res, next);
-    });
+        })
+        .catch(err => {
+            err.isNotification = true;
+            next(err, req, res, next);
+        });
 });
 router.get('/register', async function (req, res, next) {
     register(req.query.username, req.query.password)

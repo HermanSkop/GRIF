@@ -1,18 +1,17 @@
-const {purchaseCollection} = require('../database/db');
-
-async function insertPurchase(username, name, email, phone, plan, promo) {
+const {purchaseCollection, ObjectId} = require('../database/db');
+async function insertPurchase(user, name, email, phone, plan, promo) {
     return await purchaseCollection.insertOne({
-        username: username,
+        userId: user._id,
         name: name,
         email: email,
         phone: phone,
-        plan: plan,
-        promo: promo,
+        planId: plan._id,
+        promoId: promo?promo._id:undefined,
         date: new Date()
     });
 }
-async function getPurchases(username) {
-    return await purchaseCollection.find({username: username}).toArray();
+async function getPurchases(userId) {
+    return await purchaseCollection.find({userId: new ObjectId(userId)}).toArray();
 }
 
 module.exports = {

@@ -1,9 +1,9 @@
 function changeLanguage(lang) {
-    document.cookie = 'lang=' + lang+';';
+    Cookies.set('lang', lang);
     window.location.reload();
 }
 document.addEventListener('DOMContentLoaded', ()=>{
-    let lang = document.cookie.split('; ').find(row => row.startsWith('lang')).split('=')[1];
+    let lang = Cookies.get('lang');
     if(lang === 'en') {
         document.getElementById('en-language').classList.add('language-active');
         document.getElementById('ru-language').classList.remove('language-active');

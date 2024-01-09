@@ -29,7 +29,10 @@ function switchStatus(func, buttonText) {
 async function updateHistory(){
     fetch('/user/purchases')
         .then(async response => {
-            if (!response || response.status !== 200) await notify(response.text());
+            if (!response || response.status !== 200) {
+                await notify(await response.text());
+                throw await response.text();
+            }
             return response;
         })
         .then(response => response.json())
@@ -40,16 +43,16 @@ async function updateHistory(){
 async function logout() {
     fetch('/user/logout')
         .then(async response => {
-            if (response.status !== 200) throw await response.text();
+            if (response.status !== 200){
+                await notify(await response.text());
+                throw await response.text();
+            }
             return response;
         })
         .then(response => response.json())
         .then(async res => {
             await notify(res.logoutMessage);
             switchStatus(toggleLogin, res.login);
-        })
-        .catch(errorHtml => {
-            notify(errorHtml);
         });
 }
 async function register() {
@@ -65,7 +68,10 @@ async function register() {
 
     fetch('/user/register?' + 'username=' + username + '&password=' + password)
         .then(async response => {
-            if (response.status !== 200) await notify(response.text());
+            if (response.status !== 200) {
+                await notify(await response.text());
+                throw await response.text();
+            }
             return response;
         })
         .then(response => response.json())
@@ -87,22 +93,25 @@ async function login() {
 
     fetch('/user/login?username=' + username + '&password=' + password)
         .then(async response => {
-            if (!response || response.status !== 200) throw await response.text();
+            if (!response || response.status !== 200){
+                await notify(await response.text());
+                throw await response.text();
+            }
             return response;
         })
         .then(response => response.json())
         .then(async res => {
             await notify(res.loginMessage);
             switchStatus(logout, res.logout);
-        })
-        .catch(async errorHtml => {
-            await notify(errorHtml);
         });
 }
 async function loginOnLoad(){
     fetch('/user')
         .then(async response => {
-            if (!response || response.status !== 200) await notify(response.text());
+            if (!response || response.status !== 200) {
+                await notify(await response.text());
+                throw await response.text();
+            }
             return response;
         })
         .then(response => response.json())

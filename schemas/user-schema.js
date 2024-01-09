@@ -4,23 +4,33 @@ const isPromo = require('../schemas/promo-schema').isPromo;
 async function getUsersByMail(email) {
     return await userCollection.find({email: email}).toArray();
 }
-async function getUser(username) {
+async function getUser(id) {
+    const user = await userCollection.findOne({_id: id});
+    return user?user:undefined;
+}
+async function getUserByUsername(username) {
     const user = await userCollection.findOne({username: username});
     return user?user:undefined;
 }
 async function insertUser(username, password, role) {
-    return await userCollection.insertOne({
+    await userCollection.insertOne({
         username: username,
         password: password,
         role: role
     });
+    return await getUserByUsername(username);
 }
 async function isCorrectUser(username, password, role){
-    const user = await userCollection.findOne({username: username});
-    return user && user.password === password && user.role === role;
+    const user = await userCollection.findOne({
+        username: username,
+        password: password,
+        role: role
+    });
+    return !!user;
 }
 module.exports = {
     getUser,
-    insertUser: insertUser,
+    insertUser,
+    getUserByUsername,
     isCorrectUser
 }

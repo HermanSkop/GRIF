@@ -12,7 +12,6 @@ const renderPromoViews = async (req, res, next) => {
         if(!await isPromo(req.body.promo)) throw {message: 'invalid_promo', isNotification: true};
         req.session.promo = req.body.promo;
         req.session.user.discount = await handlePromoCode(req.body.promo);
-        console.log(req.prices);
         res.render('application', await getIndexParameters(req), async (err, html) => {
             let applicationSection = html;
             if (err) throw err;
@@ -30,14 +29,13 @@ const renderPromoViews = async (req, res, next) => {
         next(err, req, res, next);
     }
 };
-const pug = require('pug');
 async function getIndexParameters(req) {
+    let purchases = req.session.user ? await getHistory(req.session.user) : undefined;
     return {
         promo: req.session.promo,
         discount: await getDiscount(req.session.promo),
         prices: req.prices,
-        purchases: req.session.user ? await getHistory(req.session.user.username) : undefined,
-        req: req.session.lang
+        purchases: purchases,
     }
 }
 
@@ -51,6 +49,7 @@ router.get('/', async function (req, res, next) {
 });
 router.post('/reserve', async function (req, res, next) {
     try {
+        if(!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
         await makePurchase({
             username: req.session.user.username,
             password: req.session.user.password,
@@ -75,8 +74,6 @@ router.post('/reserve', async function (req, res, next) {
                 next(err, req, res, next);
             });
     } catch (err) {
-        err.title = 'not_logged_in';
-        err.message = 'not_logged_in_text';
         err.isNotification = true;
         next(err, req, res, next)
     }

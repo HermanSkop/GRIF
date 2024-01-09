@@ -16,10 +16,10 @@ function chooseItem(index) {
 
             const total_price = document.getElementById('total_price');
             total_price.textContent = item.childNodes[1].childNodes[1].textContent;
-            document.cookie = 'plan=' + prices[index].plan + '; path=/reserve';
-        })
-}
 
+            Cookies.set('plan', prices[index].name, {path: '/reserve'});
+        });
+}
 async function applyPromo() {
     const promo = document.getElementById('promo').value;
     fetch('/promo', {
@@ -41,8 +41,7 @@ async function applyPromo() {
             await notify(res.message);
             document.getElementById('plans').innerHTML = res.plansSection;
             document.getElementById('request').innerHTML = res.applicationSection;
-        })
-        .catch(err => {});
+        });
 }
 
 function submitApplication() {
@@ -62,7 +61,10 @@ function submitApplication() {
         body: JSON.stringify(data),
     })
         .then(async response => {
-            if (response.status !== 200) await notify(await response.text());
+            if (response.status !== 200) {
+                await notify(await response.text());
+                throw new Error();
+            }
             return response;
         })
         .then(response => response.json())
@@ -70,13 +72,10 @@ function submitApplication() {
             await notify(res.message);
             document.getElementById('history-table').innerHTML = res.history;
             await updateHistory();
-        })
-        .catch(() => {
-
         });
 }
 function resetPlanCookie() {
-    document.cookie = 'plan=; path=/reserve';
+    Cookies.remove('plan', {path: '/reserve'});
 }
 document.addEventListener('DOMContentLoaded', function() {
     resetPlanCookie();
