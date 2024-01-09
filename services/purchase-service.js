@@ -1,19 +1,20 @@
-const {getDiscount, getPromoByName, getPromo} = require('../schemas/promo-schema');
+const {getPromoByName, getPromo} = require('../schemas/promo-schema');
 const {isCorrectUser, getUserByUsername} = require('../schemas/user-schema');
 const {insertPurchase, getPurchases} = require('../schemas/purchase-schema');
-const {isPlan, getPrice, getPlanByName, getPlan} = require('../schemas/pricing-schema');
+const {isPlan, getPlanByName, getPlan} = require('../schemas/pricing-schema');
 
 async function makePurchase(purchase) {
-    if (!await isPlan(purchase.plan)) throw {title: 'invalid_plan', message: 'invalid_plan_text'};
     if (!purchase || !purchase.username || !purchase.password || purchase.role !== 'customer' ||
         !await isCorrectUser(purchase.username, purchase.password, purchase.role)) throw {
         title: 'not_logged_in',
         message: 'not_logged_in_text'
     };
+    if(purchase.role !== 'customer') throw {title: 'not_customer', message: 'not_customer_text'};
+    if (!await isPlan(purchase.plan)) throw {title: 'invalid_plan', message: 'invalid_plan_text'};
+    if (!isValidPromo(purchase.promo)) throw {title: 'invalid_promo'};
     if (!isValidName(purchase.name)) throw {title: 'invalid_name', message: 'invalid_name_text'};
     if (!isValidEmail(purchase.email)) throw {title: 'invalid_email', message: 'invalid_email_text'};
     if (!isValidPhone(purchase.phone)) throw {title: 'invalid_phone', message: 'invalid_phone_text'};
-    if (!isValidPromo(purchase.promo)) throw {title: 'invalid_promo'};
     await insertPurchase(await getUserByUsername(purchase.username), purchase.name, purchase.email, purchase.phone,
         await getPlanByName(purchase.plan), await getPromoByName(purchase.promo));
 }

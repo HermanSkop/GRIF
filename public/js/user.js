@@ -1,8 +1,11 @@
-const loginRegisterId = 'user-register';
+const logoutId = 'logout';
+const loginId = 'login';
 const historyId = 'history';
+const promosId = 'promos-toggler';
+const promoTableId = 'promos-container';
 
 function toggleLogin() {
-    const login = document.getElementById('popup');
+    const login = document.getElementById('login-popup');
     login.classList.contains('active')?login.classList.remove('active'):login.classList.add('active');
 }
 function switchLoginContent(contentType) {
@@ -17,13 +20,35 @@ function switchLoginContent(contentType) {
         registerContent.classList.add('active');
     }
 }
-function switchStatus(func, buttonText) {
+function switchStatus(role) {
     toggleLogin();
     let history = document.getElementById(historyId);
-    let loginRegister = document.getElementById(loginRegisterId);
-    loginRegister.onclick = func;
-    loginRegister.firstChild.textContent = buttonText;
-    history.classList.toggle('hidden');
+    let logout = document.getElementById(logoutId);
+    let login = document.getElementById(loginId);
+    let promos = document.getElementById(promosId);
+    let promoTable = document.getElementById(promoTableId);
+
+    if(role === 'customer'){
+        history.classList.remove('hidden');
+        logout.classList.remove('hidden');
+        login.classList.add('hidden');
+        promos.classList.add('hidden');
+        promoTable.classList.add('hidden');
+    }
+    else if (role === 'admin'){
+        history.classList.add('hidden');
+        logout.classList.remove('hidden');
+        login.classList.add('hidden');
+        promos.classList.remove('hidden');
+    }
+    else {
+        history.classList.add('hidden');
+        logout.classList.add('hidden');
+        login.classList.remove('hidden');
+        promos.classList.add('hidden');
+        promoTable.classList.add('hidden');
+    }
+
     updateHistory();
 }
 async function updateHistory(){
@@ -52,7 +77,7 @@ async function logout() {
         .then(response => response.json())
         .then(async res => {
             await notify(res.logoutMessage);
-            switchStatus(toggleLogin, res.login);
+            switchStatus(res.role);
         });
 }
 async function register() {
@@ -77,7 +102,7 @@ async function register() {
         .then(response => response.json())
         .then(async res => {
             await notify(res.loginMessage);
-            switchStatus(logout, res.logout);
+            switchStatus(res.user.role);
         });
 }
 async function login() {
@@ -101,8 +126,8 @@ async function login() {
         })
         .then(response => response.json())
         .then(async res => {
+            switchStatus(res.user.role);
             await notify(res.loginMessage);
-            switchStatus(logout, res.logout);
         });
 }
 async function loginOnLoad(){
@@ -116,7 +141,7 @@ async function loginOnLoad(){
         })
         .then(response => response.json())
         .then(async res => {
-            res.user.username?switchStatus(logout, res.logout):switchStatus(toggleLogin, res.login);
+            res.user?switchStatus(res.user.role):switchStatus('guest');
         })
 }
 document.addEventListener('DOMContentLoaded', function() {

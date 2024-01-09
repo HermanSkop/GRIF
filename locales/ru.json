@@ -164,6 +164,9 @@
 	"not_found_txt": "Страница которую вы ищете не найдена",
 	"return_home": "Вернуться на главную страницу",
 	"language_changed": "language_changed",
-	"cant_change_language": "Не удалось изменить язык"
-
+	"cant_change_language": "Не удалось изменить язык",
+	"no_promos": "Нет промокодов",
+	"promos": "Промокоды",
+	"not_customer": "Вы не являетесь клиентом",
+	"not_customer_text": "Для выполнения действия необходимо стать клиентом"
 }

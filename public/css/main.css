@@ -146,7 +146,7 @@ a{
     border-radius: 2px;
     transition: background-color 0.3s, color 0.3s;
 }
-.navbar-nav.custom-collapse li:nth-child(2) *{
+.navbar-nav.custom-collapse li:nth-child(n+2):nth-child(-n+3) *{
     color: #f8ca14;
 }
 
@@ -250,6 +250,30 @@ a{
 .language-active {
     background-color: #f8ca14;
 }
+
+
+/* Promos */
+.promos-container{
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+
+    background-color: #171717;
+    max-width: 89%;
+    max-height: 85%;
+    overflow-y: auto;
+
+    border: #ffd710 solid 1px;
+    border-radius: 6px;
+    border-collapse: collapse;
+}
+.participants-container table{
+    table-layout: fixed;
+    text-align: left;
+}
+
 
 /* Description */
 .rest-container {

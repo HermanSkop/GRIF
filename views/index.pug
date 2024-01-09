@@ -17,13 +17,14 @@ head
     script(src='js/user.js')
     script(src='js/cards.js')
     script(src='js/language.js')
+    script(src='js/promo-table.js')
     script(src='https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js')
     title GRIF
 
 .body-container
     #notification.error-notification
 
-    #popup.div.overlay.active
+    #login-popup.div.overlay.active
         div.popup
             .tabs
                 .tab.button.back-button(onclick="toggleLogin()")
@@ -58,8 +59,33 @@ head
                                 img(src="./images/uk-flag.svg" alt="Eng")
                             button.language-btn#ru-language(onclick="changeLanguage('ru')")
                                 img(src="./images/rus-flag.svg" alt="Ru")
-                    li.nav-item(id='user-register', onclick='toggleLogin()')
+                    li.nav-item.hidden(id='logout', onclick='logout()')
+                        a.nav-link #{tr.logout}
+                    li.nav-item(id='login', onclick='toggleLogin()')
                         a.nav-link #{tr.login}
+                    li.nav-item.hidden(id='promos-toggler', onclick='togglePromos()')
+                        a.nav-link #{tr.promos}
+                    if promos
+                        div#promos-container.promos-container.hidden
+                            table#promos-table
+                                thead
+                                    tr
+                                        th #{promoId}
+                                        th #{promoName}
+                                        th #{promoDiscount}
+                                        th #{promoUsed}
+                                tbody
+                                    each promo in promos
+                                        tr
+                                            td #{promo._id}
+                                            td #{promo.name}
+                                            td #{promo.discount}
+                                            td #{promo.used}
+                    else
+                        div#promos-container.promos-container.hidden(style='padding: 10px')
+                            table#promos-table
+                                tr
+                                    td #{tr.no_promos}
                     li(id='history').nav-item.history-title.hidden
                         a.nav-link #{tr.history}
                     if purchases
@@ -414,7 +440,7 @@ head
                 .plan
                     img(src='images/camera.png' alt='camera')
                     h2 #{tr.online}
-                    h1 $#{Math.floor(prices[0].price*(discount===undefined?1:discount))}
+                    h1 $#{Math.floor(prices[0].price * (discount === undefined ? 1 : discount))}
                     p #{tr.including_taxes}
                     .included
                     ul
@@ -434,7 +460,7 @@ head
                 .plan
                     img(src='images/suitcase.png' alt='camera')
                     h2 #{tr.standard}
-                    h1 $#{Math.floor(prices[1].price*(discount===undefined?1:discount))}
+                    h1 $#{Math.floor(prices[1].price * (discount === undefined ? 1 : discount))}
                     p #{tr.including_taxes}
                     .included
                     ul
@@ -454,7 +480,7 @@ head
                 .plan
                     img(src='images/crown.png' alt='camera')
                     h2 #{tr.vip}
-                    h1 $#{Math.floor(prices[2].price*(discount===undefined?1:discount))}
+                    h1 $#{Math.floor(prices[2].price * (discount === undefined ? 1 : discount))}
                     p #{tr.including_taxes}
                     .included
                     ul
@@ -493,7 +519,7 @@ head
                                         rect(width='32' height='32' fill='white')
                             div
                                 p #{tr.online}
-                                p $#{Math.floor(prices[0].price*(discount===undefined?1:discount))}
+                                p $#{Math.floor(prices[0].price * (discount === undefined ? 1 : discount))}
                         li.tariff(onclick='chooseItem(1)')
                             svg(xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewbox='0 0 32 32' fill='none')
                                 g(clip-path='url(#clip0_429_190)')
@@ -503,7 +529,7 @@ head
                                         rect(width='32' height='32' fill='white')
                             div
                                 p #{tr.standard}
-                                p $#{Math.floor(prices[1].price*(discount===undefined?1:discount))}
+                                p $#{Math.floor(prices[1].price * (discount === undefined ? 1 : discount))}
                         li.tariff(onclick='chooseItem(2)')
                             svg(xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewbox='0 0 32 32' fill='none')
                                 g(clip-path='url(#clip0_429_143)')
@@ -513,9 +539,9 @@ head
                                         rect(width='32' height='32' fill='white')
                             div
                                 p #{tr.vip}
-                                p $#{Math.floor(prices[2].price*(discount===undefined?1:discount))}
+                                p $#{Math.floor(prices[2].price * (discount === undefined ? 1 : discount))}
                     div
-                        input#promo.promo-input(placeholder=placeholder=promo?promo:tr.add_promo type='text' name='promo')
+                        input#promo.promo-input(placeholder=placeholder = promo ? promo : tr.add_promo type='text' name='promo')
                         button(onclick='applyPromo()')
                             svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 16 16' fill='none')
                                 path(d='M12.172 7.00017L6.808 1.63617L8.222 0.222168L16 8.00017L8.222 15.7782L6.808 14.3642L12.172 9.00017H0V7.00017H12.172Z' fill='white')
