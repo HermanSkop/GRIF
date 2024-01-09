@@ -32,5 +32,5 @@
         hour = minute * 60,
         day = hour * 24;
     iterate();
-    let requestInterval = setInterval(iterate, 10000)
+    let requestInterval = setInterval(iterate, 300000)
 }());
