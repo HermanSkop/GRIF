@@ -81,11 +81,33 @@ head
                                             td #{promo.name}
                                             td #{promo.discount}
                                             td #{promo.used}
+                            a.nav-button(onclick='prevPromos()')
+                                img(src='./images/arrow.png' alt='arrow')
+                            a.nav-button(onclick='addPromo()')
+                                svg(width="24" height="24", viewBox="0 0 24 24", xmlns="http://www.w3.org/2000/svg", fill="none", stroke="currentColor", stroke-width="2", stroke-linecap="round", stroke-linejoin="round")
+                                    circle(cx="12", cy="12", r="10")
+                                    line(x1="12", y1="8", x2="12", y2="16")
+                                    line(x1="8", y1="12", x2="16", y2="12")
+                                img(src='./images/plus.png' alt='plus')
+                            a.nav-button(onclick='nextPromos()')
+                                img(src='./images/arrow.png' alt='arrow')
                     else
-                        div#promos-container.promos-container.hidden(style='padding: 10px')
+                        div#promos-container.promos-container(style='padding: 10px')
                             table#promos-table
                                 tr
                                     td #{tr.no_promos}
+                            div.nav-container
+                                div.promo-input-container
+                                    input#promo.promo-input(placeholder=placeholder = tr.addDiscount type='number' name='discount' min="0" max="100" step="1")
+                                    input#promo.promo-input(placeholder=placeholder = promo ? promo : tr.add_promo type='text' name='promo')
+                                    button(onclick='createPromo()')
+                                        svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 16 16' fill='none')
+                                            path(d='M12.172 7.00017L6.808 1.63617L8.222 0.222168L16 8.00017L8.222 15.7782L6.808 14.3642L12.172 9.00017H0V7.00017H12.172Z' fill='white')
+                                div.nav-buttons-container
+                                    a.nav-button(onclick='prevPromos()')
+                                        img(src='./images/arrow.png' alt='arrow')
+                                    a.nav-button(onclick='nextPromos()')
+                                        img(src='./images/arrow.png' alt='arrow')
                     li(id='history').nav-item.history-title.hidden
                         a.nav-link #{tr.history}
                     if purchases
@@ -540,7 +562,7 @@ head
                             div
                                 p #{tr.vip}
                                 p $#{Math.floor(prices[2].price * (discount === undefined ? 1 : discount))}
-                    div
+                    div.promo-input-container
                         input#promo.promo-input(placeholder=placeholder = promo ? promo : tr.add_promo type='text' name='promo')
                         button(onclick='applyPromo()')
                             svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 16 16' fill='none')

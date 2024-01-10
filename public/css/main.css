@@ -82,6 +82,17 @@ a{
 .hidden{
     display: none;
 }
+
+.promo-input-container button{
+    width: 15%;
+    background-color: #E0E0E0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.promo-input-container{
+    display: flex;
+    box-sizing: border-box;
+}
 /* Main */
 .main-screen {
     position: relative;
@@ -273,7 +284,40 @@ a{
     table-layout: fixed;
     text-align: left;
 }
-
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+.nav-container .promo-input-container{
+    min-height: 30px;
+}
+.nav-container .promo-input-container .promo-input:first-child{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.nav-container .promo-input-container .promo-input:nth-child(2){
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.nav-buttons-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.nav-button{
+    border-radius: 2px;
+    margin-right: 5px;
+    transition: background-color 0.3s;
+}
+.nav-button:first-child{
+    transform: rotate(180deg);
+}
+.nav-button:hover{
+    background-color: #444;
+}
 
 /* Description */
 .rest-container {
@@ -795,16 +839,6 @@ a{
     width: 30%;
     padding: 40px 0;
 }
-.choose-tariff button{
-    width: 15%;
-    background-color: #E0E0E0;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
-.choose-tariff div{
-    display: flex;
-    box-sizing: border-box;
-}
 .choose-tariff p {
     color: #828282;
     width: 100%;
@@ -858,6 +892,9 @@ a{
 }
 .promo-input + button:hover{
     background-color: #F8CA14;
+}
+.promo-input + button{
+    transition: background-color 0.3s;
 }
 
 .selected-tariff {
