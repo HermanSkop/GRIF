@@ -326,8 +326,7 @@ a{
 }
 
 #cross-icon{
-    width: 70%;
-    height: 70%;
+    height: 60%;
 }
 #cross-icon:hover{
     transition: background-color 0.3s;
