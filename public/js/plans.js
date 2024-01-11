@@ -77,6 +77,3 @@ function submitApplication() {
 function resetPlanCookie() {
     Cookies.remove('plan', {path: '/reserve'});
 }
-document.addEventListener('DOMContentLoaded', function() {
-    resetPlanCookie();
-});

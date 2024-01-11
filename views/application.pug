@@ -7,7 +7,7 @@ h1.main-point #{tr.leave_request}
 p #{tr.leave_request_text}
 .request-container
     .choose-tariff
-        h2 #{tr.plan}
+        h2 #{tr.choose_plan}
         p #{tr.plan_text}
         ul#tariffs
             li.tariff(onclick='chooseItem(0)')
@@ -40,7 +40,7 @@ p #{tr.leave_request_text}
                 div
                     p #{tr.vip}
                     p $#{Math.floor(prices[2].price * (discount === undefined ? 1 : discount))}
-        div
+        div.promo-input-container
             input#promo.promo-input(placeholder=placeholder = promo ? promo : tr.add_promo type='text' name='promo')
             button(onclick='applyPromo()')
                 svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 16 16' fill='none')

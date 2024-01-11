@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const {getHistory, makePurchase} = require('../services/purchase-service');
-const {handlePromoCode} = require('../services/promo-service');
+const {handlePromoCode, deletePromoCode, putPromoCode} = require('../services/promo-service');
 const {getPlans} = require('../schemas/pricing-schema');
-const {isPromo, getDiscount} = require('../schemas/promo-schema');
+const {isPromo, getDiscount, getPromos} = require('../schemas/promo-schema');
 const path = require("path");
 const {readFileSync} = require("fs");
 const renderPromoViews = async (req, res, next) => {
     try {
-        if(!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
-        if(!await isPromo(req.body.promo)) throw {message: 'invalid_promo', isNotification: true};
+        if (!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
+        if (!await isPromo(req.body.promo)) throw {message: 'invalid_promo', isNotification: true};
         req.session.promo = req.body.promo;
         req.session.user.discount = await handlePromoCode(req.body.promo);
         res.render('application', await getIndexParameters(req), async (err, html) => {
@@ -49,7 +49,7 @@ router.get('/', async function (req, res, next) {
 });
 router.post('/reserve', async function (req, res, next) {
     try {
-        if(!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
+        if (!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
         await makePurchase({
             username: req.session.user.username,
             password: req.session.user.password,
@@ -101,6 +101,41 @@ router.get('/prices', async function (req, res, next) {
     }
 });
 router.post('/promo', renderPromoViews);
+router.put('/promo', async function (req, res, next) {
+    try {
+        await putPromoCode(req.session.user, req.body.promo);
+        res.status(200).json({
+            message: res.__('promo_added')
+        });
+    } catch (err) {
+        next(err, req, res, next);
+    }
+});
+router.delete('/promo', async function (req, res, next) {
+    try {
+        await deletePromoCode(req.session.user, req.body.promoId);
+        res.status(200).json({
+            message: res.__('promo_deleted')
+        });
+    } catch (err) {
+        next(err, req, res, next);
+    }
+});
+router.get('/promos', async function (req, res, next) {
+    try {
+        let index = await getIndexParameters(req);
+        index['promos'] = await getPromos();
+
+        res.render('promos', index, (err, html) => {
+            if (err) throw err;
+            res.status(200).json({
+                promos: html,
+            });
+        });
+    } catch (err) {
+        next(err, req, res, next)
+    }
+});
 
 module.exports.indexRouter = router;
 module.exports.getIndexParameters = getIndexParameters;

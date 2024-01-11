@@ -34,6 +34,7 @@ function switchStatus(role) {
         login.classList.add('hidden');
         promos.classList.add('hidden');
         promoTable.classList.add('hidden');
+        updateHistory();
     }
     else if (role === 'admin'){
         history.classList.add('hidden');
@@ -49,7 +50,6 @@ function switchStatus(role) {
         promoTable.classList.add('hidden');
     }
 
-    updateHistory();
 }
 async function updateHistory(){
     fetch('/user/purchases')
@@ -144,6 +144,3 @@ async function loginOnLoad(){
             res.user?switchStatus(res.user.role):switchStatus('guest');
         })
 }
-document.addEventListener('DOMContentLoaded', function() {
-    loginOnLoad().then(() => updateHistory);
-});

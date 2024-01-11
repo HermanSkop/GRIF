@@ -280,15 +280,18 @@ a{
     border-radius: 6px;
     border-collapse: collapse;
 }
-.participants-container table{
+.promos-container table{
+    min-width: 50vw;
     table-layout: fixed;
     text-align: left;
+    margin-bottom: 10px;
 }
 .nav-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 10px 0;
+    padding-top: 10px;
+    border-top: 1px solid #ffd710;
 }
 .nav-container .promo-input-container{
     min-height: 30px;
@@ -319,6 +322,16 @@ a{
     background-color: #444;
 }
 
+#cross-icon{
+    width: 70%;
+    height: 70%;
+}
+#cross-icon:hover{
+    transition: background-color 0.3s;
+    background-color: #d92727;
+    cursor: pointer;
+    border-radius: 3px;
+}
 /* Description */
 .rest-container {
     background: #171717;

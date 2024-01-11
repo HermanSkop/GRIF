@@ -164,5 +164,17 @@
   "no_promos": "There are no promos yet",
   "promos": "Promos",
   "not_customer": "You are not a customer",
-    "not_customer_text": "You need to be a logged in customer to perform this action"
+    "not_customer_text": "You need to be a logged in customer to perform this action",
+  "session_expired": "Session expired",
+    "session_expired_text": "Your session has expired. Please log in again",
+  "id": "ID",
+  "code": "Code",
+  "discount": "Discount",
+  "used": "Used",
+  "invalid_length": "Invalid length",
+    "invalid_length_text": "The length of the field must be between exactly 6 characters",
+  "promo_added": "Promo added",
+  "promo_deleted": "Promo deleted",
+  "promo_added_text": "Promo added successfully",
+    "promo_deleted_text": "Promo deleted successfully"
 }
