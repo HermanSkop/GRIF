@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const {MongoClient} = require('mongodb');
 
 const url = 'mongodb://localhost:27017';
 const dbName = 'grif_db';
@@ -16,13 +16,15 @@ async function connectToDatabase() {
     }
 }
 
-const usersCollection = client.db(dbName).collection('users');
+const userCollection = client.db(dbName).collection('user');
+const purchaseCollection = client.db(dbName).collection('purchases');
 const promosCollection = client.db(dbName).collection('promos');
-const pricingCollection = client.db(dbName).collection('pricing');
+const planCollection = client.db(dbName).collection('pricing');
 
 module.exports.connectToDatabase = connectToDatabase;
 module.exports.client = client;
-
-module.exports.usersCollection = usersCollection;
+module.exports.userCollection = userCollection;
 module.exports.promosCollection = promosCollection;
-module.exports.pricingCollection = pricingCollection;
+module.exports.planCollection = planCollection;
+module.exports.purchaseCollection = purchaseCollection;
+module.exports.ObjectId = require('mongodb').ObjectId;

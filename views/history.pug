@@ -1,0 +1,25 @@
+if purchases
+    table#history-table.history
+        thead
+            tr.history-row
+                th.history-item #{tr.name}
+                th.history-item #{tr.email}
+                th.history-item #{tr.phone}
+                th.history-item #{tr.plan}
+                th.history-item #{tr.promo}
+                th.history-item #{tr.price}
+                th.history-item #{tr.date}
+        tbody
+            each purchase in purchases
+                tr.history-row
+                    td.history-item #{purchase.name}
+                    td.history-item #{purchase.email}
+                    td.history-item #{purchase.phone}
+                    td.history-item #{purchase.plan}
+                    td.history-item #{purchase.promo}
+                    td.history-item $#{Math.round(purchase.price)}
+                    td.history-item #{purchase.date.getDate() + '.' + (purchase.date.getMonth() + 1) + '.' + purchase.date.getFullYear()}
+else
+    table#history-table.history(style='padding: 10px')
+        tr
+            td #{tr.no_purchases}

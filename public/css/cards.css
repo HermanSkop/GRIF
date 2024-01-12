@@ -6,7 +6,7 @@
   user-select: none;
 }
 
-.carousel .item {
+.carousel .card-item {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -19,14 +19,14 @@
   opacity: 0;
 }
 
-.item.active {
+.card-item.active {
   height: 500px;
   width: 400px;
   opacity: 1;
   z-index: 99;
 }
 
-.item.prev {
+.card-item.prev {
   height: 400px;
   width: 300px;
   z-index: 2;
@@ -34,7 +34,7 @@
   transform: translate(-125%, -50%);
 }
 
-.item.next {
+.card-item.next {
   height: 400px;
   width: 300px;
   z-index: 2;

@@ -1,0 +1,63 @@
+h1.main-point #{tr.plans}
+p #{tr.plans_text}
+.plans-container
+            .plan
+                img(src='images/camera.png' alt='camera')
+                h2 #{tr.online}
+                h1 $#{Math.floor(prices[0].price*(discount===undefined?1:discount))}
+                p #{tr.including_taxes}
+                .included
+                ul
+                    li
+                        img(src='images/Check-grey.png' alt='')
+                        | 01 #{tr.seat}
+                    li.excluded
+                        img(src='images/Close-grey.png' alt='')
+                        | #{tr.breaks}
+                    li.excluded
+                        img(src='images/Close-grey.png' alt='')
+                        | #{tr.wifi}
+                    li.excluded
+                        img(src='images/Close-grey.png' alt='')
+                        | #{tr.exclusive_seats}
+                button(onclick='moveToItem(0)') #{tr.buy_now}
+            .plan
+                img(src='images/suitcase.png' alt='camera')
+                h2 #{tr.standard}
+                h1 $#{Math.floor(prices[1].price*(discount===undefined?1:discount))}
+                p #{tr.including_taxes}
+                .included
+                ul
+                    li
+                        img(src='images/Check-black.png' alt='')
+                        | 02 #{tr.seats}
+                    li
+                        img(src='images/Check-black.png' alt='')
+                        | #{tr.breaks}
+                    li
+                        img(src='images/Close-black.png' alt='')
+                        | #{tr.wifi}
+                    li
+                        img(src='images/Close-black.png' alt='')
+                        | #{tr.exclusive_seats}
+                button(onclick='moveToItem(1)') #{tr.buy_now}
+            .plan
+                img(src='images/crown.png' alt='camera')
+                h2 #{tr.vip}
+                h1 $#{Math.floor(prices[2].price*(discount===undefined?1:discount))}
+                p #{tr.including_taxes}
+                .included
+                ul
+                    li
+                        img(src='images/Check-grey.png' alt='')
+                        | 02 #{tr.seats}
+                    li
+                        img(src='images/Check-grey.png' alt='')
+                        | #{tr.breaks}
+                    li
+                        img(src='images/Check-grey.png' alt='')
+                        | #{tr.wifi}
+                    li
+                        img(src='images/Check-grey.png' alt='')
+                        | #{tr.exclusive_seats}
+                button(onclick='moveToItem(2)') #{tr.buy_now}

@@ -1,138 +1,182 @@
 {
-  "slogan": "THE MAIN EVENT IN THE WORLD OF INVESTMENT IN<br>INTERNATIONAL REAL ESTATE",
-  "speakers": "Speakers",
-  "program": "Program",
-  "participants": "Participants",
-  "auditorium": "Auditorium",
-  "plans": "Plans",
-  "participate": "PARTICIPATE",
-  "main_partners": "Main partners",
-
-  "forumSpeakers": "Forum speakers",
-  "forumSpeakersText": "The forum will be attended by leading experts in the field of international real estate, as well as representatives of the world's leading companies.",
-  "forum": "Forum",
-  "speakers_list": [
-    {
-      "name": "Dr. Emily Chen",
-      "occupation": "Chief Economist",
-      "forum_date": "March 18, 2023",
-      "background": "Renowned economist with extensive experience in analyzing global economic trends. Known for accurate predictions on market shifts."
-    },
-    {
-      "name": "Marcus Rodriguez",
-      "occupation": "Managing Director",
-      "forum_date": "March 18, 2023",
-      "background": "Driving force in integrating environmental, social, and governance (ESG) factors into investment strategies. Focuses on sustainable finance."
-    },
-    {
-      "name": "Sarah Ahmed",
-      "occupation": "Technology Analyst",
-      "forum_date": "March 18, 2023",
-      "background": "Specializes in identifying disruptive trends and innovative companies in the technology sector."
-    },
-    {
-      "name": "Javier Morales",
-      "occupation": "Portfolio Manager",
-      "forum_date": "March 18, 2023",
-      "background": "Portfolio manager with a focus on emerging markets. Brings experience managing portfolios in diverse and dynamic economies."
-    }
-  ],
-  "buy_ticket": "Buy ticket",
-
-  "forum_program": "Forum program",
-  "forum_program_text": "The forum schedule includes a series of lectures and master classes from leading experts in the field of international real estate.",
-  "forum_date": "March 18, 2023",
-  "forum_program_list": [
-    {
-      "time": "10:00",
-      "title": "Registration of participants",
-      "description": "Registration of participants and distribution of badges"
-    },
-    {
-      "time": "11:00",
-      "title": "Opening of the forum",
-      "description": "Opening of the forum and welcoming speech by the organizers"
-    },
-    {
-      "time": "12:00",
-      "title": "Lecture by Dr. Emily Chen",
-      "description": "Lecture by Dr. Emily Chen, Chief Economist"
-    },
-    {
-      "time": "13:00",
-      "title": "Lecture by Marcus Rodriguez",
-      "description": "Lecture by Marcus Rodriguez, Managing Director"
-    },
-    {
-      "time": "14:00",
-      "title": "Lecture by Sarah Ahmed",
-      "description": "Lecture by Sarah Ahmed, Technology Analyst"
-    },
-    {
-      "time": "15:00",
-      "title": "Lecture by Javier Morales",
-      "description": "Lecture by Javier Morales, Portfolio Manager"
-    },
-    {
-      "time": "16:00",
-      "title": "Closing of the forum",
-      "description": "Closing of the forum and awarding of certificates"
-    }
-  ],
-  "discover_plans": "DISCOVER PLANS",
-
-  "forum_date_short": "18 March",
-  "city": "LONDON",
-
-  "participants_list": [
-    "Real Estate Investment Strategist",
-    "Sustainable Development Advocate",
-    "Global Market Analyst",
-    "Tech Innovation Enthusiast",
-    "Emerging Markets Specialist"
-  ],
-
-  "our_partners": "Our partners",
-  "join_us": "Join us",
-
-  "auditorium_title": "Premium auditorium Queen Elizabeth Hall",
-  "auditorium_address": "Southbank Centre, Belvedere Rd, London SE1 8XX, United Kingdom",
-  "auditorium_text": "Nestled along the iconic South Bank of the River Thames, Queen Elizabeth Hall stands as a beacon of cultural vibrancy in the heart of London. This architecturally distinctive venue, part of the esteemed Southbank Centre, boasts a contemporary design that harmonizes seamlessly with its surroundings.<br><br>With a sprawling presence, Queen Elizabeth Hall offers a grand canvas for artistic expression, drawing patrons into an immersive experience within its expansive confines. The hall's modernist allure is not merely a testament to architectural finesse; it is a prelude to the diverse tapestry of performances that unfold within its walls.<br><br>At Queen Elizabeth Hall, the immersive atmosphere is designed to forge a profound connection between performers and spectators. The expanded seating capacity elevates the intimacy of each event, whether it be a classical masterpiece, an avant-garde spectacle, or an experimental fusion of artistic genres. This grandeur ensures that every patron, from the seasoned cultural connoisseur to the first-time visitor, is enveloped in the enchantment of the arts.",
-
-  "discount_ends": "Discount ends in",
-  "days": "DAYS",
-  "hours": "HOURS",
-  "minutes": "MINUTES",
-  "seconds": "SECONDS",
-
-  "plans_text": "Choose your experience with our event plans—immerse yourself in a world of virtual access with the Online Plan, enjoy the heart of live events with the Standard Plan, or indulge in luxury and exclusivity with the VIP Plan.",
-    "online": "Online",
-    "standard": "Standard",
-    "vip": "VIP",
-  "including_taxes": "Including taxes",
-  "seat": "Seat",
-  "seats": "Seats",
-  "breaks": "Tea & Coffee Breaks",
-  "wifi": "Wifi available",
-  "exclusive_seats": "exclusive seats",
-  "buy_now": "Buy now",
-
-  "leave_request": "Leave a request",
-    "fill_form": "Fill out the form",
-    "leave_request_text": "Leave a request and we will contact you to clarify the details",
-    "name": "Your name",
-    "email": "Email",
-    "phone": "Phone №",
-    "pay": "Pay",
-  "add_promo": "Add Promo Code",
-  "plan": "Choose a plan",
-  "plan_text": "Know more about our plans above",
-
-  "questions_left": "Questions left?",
-  "footer_text": "If you have any questions, please contact us by phone or email. We will be happy to answer you.",
-  "contact_us": "Contact us",
-
-  "history": "Payment history",
-  "no_payments": "No payments yet"
+	"slogan": "THE MAIN EVENT IN THE WORLD OF INVESTMENT IN<br>INTERNATIONAL REAL ESTATE",
+	"speakers": "Speakers",
+	"program": "Program",
+	"participants": "Participants",
+	"auditorium": "Auditorium",
+	"plans": "Plans",
+	"participate": "PARTICIPATE",
+	"main_partners": "Main partners",
+	"forum_speakers": "Forum speakers",
+	"forum_speakers_text": "The forum will be attended by leading experts in the field of international real estate, as well as representatives of the world's leading companies.",
+	"forum": "Forum",
+	"speakers_list": [
+		{
+			"name": "Dr. Emily Chen",
+			"occupation": "Chief Economist",
+			"background": "Renowned economist with extensive experience in analyzing global economic trends. Known for accurate predictions on market shifts."
+		},
+		{
+			"name": "Marcus Rodriguez",
+			"occupation": "Managing Director",
+			"background": "Driving force in integrating environmental, social, and governance (ESG) factors into investment strategies. Focuses on sustainable finance."
+		},
+		{
+			"name": "Sarah Ahmed",
+			"occupation": "Technology Analyst",
+			"background": "Specializes in identifying disruptive trends and innovative companies in the technology sector."
+		},
+		{
+			"name": "Javier Morales",
+			"occupation": "Portfolio Manager",
+			"background": "Portfolio manager with a focus on emerging markets. Brings experience managing portfolios in diverse and dynamic economies."
+		}
+	],
+	"buy_ticket": "Buy ticket",
+	"forum_program": "Forum program",
+	"forum_program_text": "The forum schedule includes a series of lectures and master classes from leading experts in the field of international real estate.",
+	"forum_date": "March 18, 2023",
+	"forum_program_list": [
+		{
+			"time": "10:00",
+			"title": "Registration of participants",
+			"description": "Registration of participants and distribution of badges"
+		},
+		{
+			"time": "11:00",
+			"title": "Opening of the forum",
+			"description": "Opening of the forum and welcoming speech by the organizers"
+		},
+		{
+			"time": "12:00",
+			"title": "Lecture by Dr. Emily Chen",
+			"description": "Lecture by Dr. Emily Chen, Chief Economist"
+		},
+		{
+			"time": "13:00",
+			"title": "Lecture by Marcus Rodriguez",
+			"description": "Lecture by Marcus Rodriguez, Managing Director"
+		},
+		{
+			"time": "14:00",
+			"title": "Lecture by Sarah Ahmed",
+			"description": "Lecture by Sarah Ahmed, Technology Analyst"
+		},
+		{
+			"time": "15:00",
+			"title": "Lecture by Javier Morales",
+			"description": "Lecture by Javier Morales, Portfolio Manager"
+		},
+		{
+			"time": "16:00",
+			"title": "Closing of the forum",
+			"description": "Closing of the forum and awarding of certificates"
+		}
+	],
+	"discover_plans": "DISCOVER PLANS",
+	"forum_date_short": "18 March",
+	"city": "LONDON",
+	"date": "Date",
+	"price": "Price",
+	"participants_list": [
+		"Real Estate Investment Strategist",
+		"Sustainable Development Advocate",
+		"Global Market Analyst",
+		"Tech Innovation Enthusiast",
+		"Emerging Markets Specialist"
+	],
+	"our_partners": "Our partners",
+	"join_us": "Join us",
+	"auditorium_title": "Premium auditorium Queen Elizabeth Hall",
+	"auditorium_address": "Southbank Centre, Belvedere Rd, London SE1 8XX, United Kingdom",
+	"auditorium_text": "Nestled along the iconic South Bank of the River Thames, Queen Elizabeth Hall stands as a beacon of cultural vibrancy in the heart of London. This architecturally distinctive venue, part of the esteemed Southbank Centre, boasts a contemporary design that harmonizes seamlessly with its surroundings.<br><br>With a sprawling presence, Queen Elizabeth Hall offers a grand canvas for artistic expression, drawing patrons into an immersive experience within its expansive confines. The hall's modernist allure is not merely a testament to architectural finesse; it is a prelude to the diverse tapestry of performances that unfold within its walls.<br><br>At Queen Elizabeth Hall, the immersive atmosphere is designed to forge a profound connection between performers and spectators. The expanded seating capacity elevates the intimacy of each event, whether it be a classical masterpiece, an avant-garde spectacle, or an experimental fusion of artistic genres. This grandeur ensures that every patron, from the seasoned cultural connoisseur to the first-time visitor, is enveloped in the enchantment of the arts.",
+	"discount_ends": "Discount ends in",
+	"days": "DAYS",
+	"hours": "HOURS",
+	"minutes": "MINUTES",
+	"seconds": "SECONDS",
+	"plans_text": "Choose your experience with our event plans—immerse yourself in a world of virtual access with the Online Plan, enjoy the heart of live events with the Standard Plan, or indulge in luxury and exclusivity with the VIP Plan.",
+	"online": "Online",
+	"standard": "Standard",
+	"vip": "VIP",
+	"including_taxes": "Including taxes",
+	"seat": "Seat",
+	"seats": "Seats",
+	"breaks": "Tea & Coffee Breaks",
+	"wifi": "Wifi available",
+	"exclusive_seats": "exclusive seats",
+	"buy_now": "Buy now",
+	"leave_request": "Leave a request",
+	"fill_form": "Fill out the form",
+	"leave_request_text": "Leave a request and we will contact you to clarify the details",
+	"name": "Your name",
+	"email": "Email",
+	"phone": "Phone №",
+	"pay": "Pay",
+	"add_promo": "Add Promo Code",
+	"plan": "Plan",
+	"choose_plan": "Choose a plan",
+	"plan_text": "Know more about our plans above",
+	"questions_left": "Questions left?",
+	"footer_text": "If you have any questions, please contact us by phone or email. We will be happy to answer you.",
+	"contact_us": "Contact us",
+	"history": "Payment history",
+	"no_purchases": "There are not purchases yet",
+	"error": "Error",
+	"error_text": "An error occurred try again later",
+	"invalid_promo": "Invalid promo code",
+	"invalid_fields_size": "Invalid number of fields in request",
+	"invalid_fields_size_text": "The number of fields in the request does not match the expected",
+	"invalid_name": "Invalid name",
+	"invalid_name_text": "The name must contain only letters and spaces",
+	"invalid_email": "Invalid email",
+	"invalid_email_text": "The email must be in the format example@exmpl.com",
+	"invalid_phone": "Invalid phone number",
+	"invalid_phone_text": "The phone number must be 8-10 digits long",
+	"invalid_plan": "Invalid plan",
+	"invalid_plan_text": "The plan is not selected or does not exist",
+	"invalid_password_or_username": "Invalid password or username",
+	"oops_error": "Oops, something went wrong",
+	"oops_error_text": "We're sorry, but it seems that an error occurred. Please try again later.",
+	"invalid_password": "Invalid password",
+	"invalid_password_text": "The password must be 8-10 characters long ",
+	"invalid_username": "Invalid username",
+	"invalid_username_text": "The username must be 3-20 characters long, contain only letters, numbers, and underscores",
+	"logout": "Logout",
+	"logout_message": "Logged out successfully",
+	"login": "Login",
+	"login_message": "Logged in successfully",
+	"register": "Register",
+	"register_message": "Registered successfully",
+	"username": "Username",
+	"password": "Password",
+	"hello_again": "Hello again!",
+	"welcome": "Join us!",
+	"purchase_completed": "Purchase is completed successfully",
+	"not_logged_in": "You are not logged in",
+	"not_logged_in_text": "You need to log in to perform this action",
+	"promo": "Promo code",
+	"promo_applied": "Promo code applied",
+	"not_found_txt": "Page you are looking for is not found",
+	"return_home": "Return to the homepage",
+	"cant_change_language": "It is impossible to change the language",
+	"user_already_exists": "user_already_exists",
+	"no_promos": "There are no promos yet",
+	"promos": "Promos",
+	"not_customer": "You are not a customer",
+	"not_customer_text": "You need to be a logged in customer to perform this action",
+	"session_expired": "Session expired",
+	"session_expired_text": "Your session has expired. Please log in again",
+	"id": "ID",
+	"code": "Code",
+	"discount": "Discount",
+	"used": "Used",
+	"invalid_length": "Invalid length",
+	"invalid_length_text": "The length of the field must be between exactly 6 characters",
+	"promo_added": "Promo added",
+	"promo_deleted": "Promo deleted",
+	"promo_added_text": "Promo added successfully",
+	"promo_deleted_text": "Promo deleted successfully",
+	"no_permission": "no_permission",
+	"no_permission_text": "no_permission_text"
 }
-

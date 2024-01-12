@@ -1,0 +1,18 @@
+thead
+    th #{tr.id}
+    th #{tr.code}
+    th #{tr.discount}
+    th #{tr.used}
+    th
+tbody
+    each promo in promos?promos:[]
+        tr
+            td #{promo._id}
+            td #{promo.name}
+            td #{parseInt((1-promo.discount)*100)}%
+            td #{promo.used}
+            td
+                svg#cross-icon(width="24" height="24", viewBox="0 0 24 24", xmlns="http://www.w3.org/2000/svg", fill="none", stroke="currentColor",
+                    stroke-width="3", stroke-linecap="round", stroke-linejoin="round", onclick="deletePromo('" + promo._id + "')")
+                    line(x1="3" y1="3" x2="21" y2="21")
+                    line(x1="3" y1="21" x2="21" y2="3")
