@@ -39,8 +39,7 @@ async function applyPromo() {
         .then(response => response.json())
         .then(async res => {
             await notify(res.message);
-            document.getElementById('plans').innerHTML = res.plansSection;
-            document.getElementById('request').innerHTML = res.applicationSection;
+            updatePlans()
         });
 }
 
@@ -72,6 +71,14 @@ function submitApplication() {
             await notify(res.message);
             document.getElementById('history-table').innerHTML = res.history;
             await updateHistory();
+        });
+}
+function updatePlans(){
+    fetch('/promo')
+        .then(response => response.json())
+        .then(res => {
+            document.getElementById('plans').innerHTML = res.plansSection;
+            document.getElementById('request').innerHTML = res.applicationSection;
         });
 }
 function resetPlanCookie() {

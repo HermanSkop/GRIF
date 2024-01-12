@@ -27,7 +27,6 @@ function switchStatus(role) {
     let login = document.getElementById(loginId);
     let promos = document.getElementById(promosId);
     let promoTable = document.getElementById(promoTableId);
-
     if(role === 'customer'){
         history.classList.remove('hidden');
         logout.classList.remove('hidden');
@@ -49,7 +48,7 @@ function switchStatus(role) {
         promos.classList.add('hidden');
         promoTable.classList.add('hidden');
     }
-
+    updatePlans();
 }
 async function updateHistory(){
     fetch('/user/purchases')

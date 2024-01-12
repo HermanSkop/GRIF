@@ -72,10 +72,6 @@ a{
 
 }
 
-.hidden{
-    display: none;
-}
-
 .promo-input-container button{
     width: 15%;
     background-color: #E0E0E0;
@@ -268,15 +264,20 @@ a{
 
 /* Promos */
 .promos-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     position: fixed;
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
-    justify-content: center;
+    padding: 10px 10px 0 10px;
 
     background-color: #171717;
     max-width: 89%;
     max-height: 85%;
+    min-height: 60vh;
     overflow-y: auto;
 
     border: #ffd710 solid 1px;
@@ -287,23 +288,24 @@ a{
     min-width: 50vw;
     table-layout: fixed;
     text-align: left;
-    margin-bottom: 10px;
 }
 .nav-container{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-top: 10px;
+    padding: 10px 0;
     border-top: 1px solid #ffd710;
 }
 .nav-container .promo-input-container{
     min-height: 30px;
 }
 .nav-container .promo-input-container .promo-input:first-child{
+    min-width: 35%;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
 .nav-container .promo-input-container .promo-input:nth-child(2){
+    width: 40%;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
@@ -1105,6 +1107,11 @@ a{
 .error-notification.showError{
     opacity: 1;
     transform: translateY(75px);
+}
+
+/* Commons */
+.hidden{
+    display: none;
 }
 
 @media (max-width: 991px) {

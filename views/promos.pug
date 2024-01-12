@@ -5,7 +5,7 @@ thead
     th #{tr.used}
     th
 tbody
-    each promo in promos
+    each promo in promos?promos:[]
         tr
             td #{promo._id}
             td #{promo.name}

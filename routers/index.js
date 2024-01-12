@@ -1,34 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const {getHistory, makePurchase} = require('../services/purchase-service');
-const {handlePromoCode, deletePromoCode, putPromoCode} = require('../services/promo-service');
+const {deletePromoCode, putPromoCode, getPromoCodes} = require('../services/promo-service');
 const {getPlans} = require('../schemas/pricing-schema');
-const {isPromo, getDiscount, getPromos} = require('../schemas/promo-schema');
+const {getDiscount} = require('../schemas/promo-schema');
 const path = require("path");
 const {readFileSync} = require("fs");
-const renderPromoViews = async (req, res, next) => {
-    try {
-        if (!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
-        if (!await isPromo(req.body.promo)) throw {message: 'invalid_promo', isNotification: true};
-        req.session.promo = req.body.promo;
-        req.session.user.discount = await handlePromoCode(req.body.promo);
-        res.render('application', await getIndexParameters(req), async (err, html) => {
-            let applicationSection = html;
-            if (err) throw err;
-            res.render('plans', await getIndexParameters(req), (err, html) => {
-                let plansSection = html;
-                if (err) throw err;
-                res.status(200).json({
-                    applicationSection: applicationSection,
-                    plansSection: plansSection,
-                    message: res.__('promo_applied')
-                });
-            });
-        });
-    } catch (err) {
-        next(err, req, res, next);
-    }
-};
 async function getIndexParameters(req) {
     let purchases = req.session.user ? await getHistory(req.session.user) : undefined;
     return {
@@ -97,42 +74,6 @@ router.get('/prices', async function (req, res, next) {
     } catch (err) {
         err.message = 'Not possible to get prices';
         err.isNotification = true;
-        next(err, req, res, next)
-    }
-});
-router.post('/promo', renderPromoViews);
-router.put('/promo', async function (req, res, next) {
-    try {
-        await putPromoCode(req.session.user, req.body.promo);
-        res.status(200).json({
-            message: res.__('promo_added')
-        });
-    } catch (err) {
-        next(err, req, res, next);
-    }
-});
-router.delete('/promo', async function (req, res, next) {
-    try {
-        await deletePromoCode(req.session.user, req.body.promoId);
-        res.status(200).json({
-            message: res.__('promo_deleted')
-        });
-    } catch (err) {
-        next(err, req, res, next);
-    }
-});
-router.get('/promos', async function (req, res, next) {
-    try {
-        let index = await getIndexParameters(req);
-        index['promos'] = await getPromos();
-
-        res.render('promos', index, (err, html) => {
-            if (err) throw err;
-            res.status(200).json({
-                promos: html,
-            });
-        });
-    } catch (err) {
         next(err, req, res, next)
     }
 });

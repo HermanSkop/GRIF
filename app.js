@@ -11,6 +11,7 @@ const winston = require('winston');
 const expressWinston = require('express-winston');
 const indexRouter = require('./routers/index').indexRouter;
 const userRouter = require('./routers/user').userRouter;
+const promoRouter = require('./routers/promo').promoRouter;
 const {getPlans} = require('./schemas/pricing-schema');
 const defaultNamingMiddleware = async (req, res, next) => {
     req.prices = await getPlans() || [];
@@ -58,6 +59,7 @@ app.use(defaultNamingMiddleware);
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/promo', promoRouter);
 app.use('/static', express.static('public'));
 
 app.use(function (err, req, res, next) {
