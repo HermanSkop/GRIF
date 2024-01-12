@@ -1,9 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const {putPromoCode, deletePromoCode, getPromoCodes, handlePromoCode, getPagesCount} = require("../services/promo-service");
+const {
+    putPromoCode,
+    deletePromoCode,
+    getPromoCodes,
+    handlePromoCode,
+    getPagesCount
+} = require("../services/promo-service");
 const {getIndexParameters} = require("./index");
-const renderPromoViews = async (req, res, next) => {
+
+router.post('/', async function (req, res, next) {
     try {
         if (!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
         req.session.user.discount = await handlePromoCode(req.body.promo);
@@ -11,13 +18,10 @@ const renderPromoViews = async (req, res, next) => {
         res.status(200).json({
             message: res.__('promo_applied')
         });
-
     } catch (err) {
         next(err, req, res, next);
     }
-};
-
-router.post('/', renderPromoViews);
+});
 router.get('/', async function (req, res, next) {
     try {
         res.render('application', await getIndexParameters(req), async (err, html) => {
@@ -59,7 +63,7 @@ router.delete('/', async function (req, res, next) {
 router.get('/page', async function (req, res, next) {
     try {
         let index = await getIndexParameters(req);
-        index['promos'] = await getPromoCodes(req.query.page);
+        index['promos'] = await getPromoCodes(req.session.user, req.query.page);
         res.render('promos', index, (err, html) => {
             if (err) throw err;
             res.status(200).json({
@@ -73,7 +77,7 @@ router.get('/page', async function (req, res, next) {
 router.get('/pages-count', async function (req, res, next) {
     try {
         res.status(200).json({
-            pagesCount: await getPagesCount()
+            pagesCount: await getPagesCount(req.session.user)
         });
     } catch (err) {
         next(err, req, res, next)

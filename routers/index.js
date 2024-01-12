@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const {getHistory, makePurchase} = require('../services/purchase-service');
-const {deletePromoCode, putPromoCode, getPromoCodes} = require('../services/promo-service');
 const {getPlans} = require('../schemas/pricing-schema');
 const {getDiscount} = require('../schemas/promo-schema');
 const path = require("path");
 const {readFileSync} = require("fs");
+
 async function getIndexParameters(req) {
     let purchases = req.session.user ? await getHistory(req.session.user) : undefined;
     return {

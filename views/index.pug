@@ -127,7 +127,7 @@ head
                                         td.history-item #{purchase.phone}
                                         td.history-item #{purchase.plan}
                                         td.history-item #{purchase.promo}
-                                        td.history-item $#{purchase.price}
+                                        td.history-item $#{Math.round(purchase.price)}
                                         td.history-item #{purchase.date.getDate() + '.' + (purchase.date.getMonth() + 1) + '.' + purchase.date.getFullYear()}
                     else
                         table#history-table.history(style='padding: 10px')

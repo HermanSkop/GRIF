@@ -63,7 +63,7 @@ app.use('/promo', promoRouter);
 app.use('/static', express.static('public'));
 
 app.use(function (err, req, res, next) {
-    if(!err.clientIgnore) {
+    if (!err.clientIgnore) {
         console.error(err);
         if (err.isNotification) {
             res.status(400).render('error-notification', {

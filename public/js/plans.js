@@ -20,6 +20,7 @@ function chooseItem(index) {
             Cookies.set('plan', prices[index].name, {path: '/reserve'});
         });
 }
+
 async function applyPromo() {
     const promo = document.getElementById('promo').value;
     fetch('/promo', {
@@ -73,7 +74,8 @@ function submitApplication() {
             await updateHistory();
         });
 }
-function updatePlans(){
+
+function updatePlans() {
     fetch('/promo')
         .then(response => response.json())
         .then(res => {
@@ -81,6 +83,7 @@ function updatePlans(){
             document.getElementById('request').innerHTML = res.applicationSection;
         });
 }
+
 function resetPlanCookie() {
     Cookies.remove('plan', {path: '/reserve'});
 }

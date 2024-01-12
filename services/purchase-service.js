@@ -9,7 +9,7 @@ async function makePurchase(purchase) {
         title: 'not_logged_in',
         message: 'not_logged_in_text'
     };
-    if(purchase.role !== 'customer') throw {title: 'not_customer', message: 'not_customer_text'};
+    if (purchase.role !== 'customer') throw {title: 'not_customer', message: 'not_customer_text'};
     if (!await isPlan(purchase.plan)) throw {title: 'invalid_plan', message: 'invalid_plan_text'};
     if (!isValidPromo(purchase.promo)) throw {title: 'invalid_promo'};
     if (!isValidName(purchase.name)) throw {title: 'invalid_name', message: 'invalid_name_text'};
@@ -20,20 +20,20 @@ async function makePurchase(purchase) {
 }
 
 async function getHistory(user) {
-    if (!user || !user.username) throw {title: 'not_logged_in', message: 'not_logged_in_text'};
+    if (!user || !user.username) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
     try {
         let purchases = await getPurchases(user._id);
         return (await Promise.allSettled(purchases.map(async purchase => {
             let plan = await getPlan(purchase.planId);
-            let promo = purchase.promoId?await getPromo(purchase.promoId):undefined;
+            let promo = purchase.promoId ? await getPromo(purchase.promoId) : undefined;
             let price = plan.price;
-            let discount = promo?promo.discount:1;
+            let discount = promo ? promo.discount : 1;
             return {
                 name: purchase.name,
                 email: purchase.email,
                 phone: purchase.phone,
                 plan: plan.name,
-                promo: promo?promo.name:undefined,
+                promo: promo ? promo.name : undefined,
                 price: price * discount,
                 date: purchase.date
             }
@@ -54,6 +54,7 @@ function isValidPhone(phone) {
 function isValidName(name) {
     return /^[a-zA-Z ]+$/.test(name) && name.length > 2;
 }
+
 function isValidPromo(promo) {
     return /^[a-zA-Z\d]{6}$/.test(promo) || !promo;
 }

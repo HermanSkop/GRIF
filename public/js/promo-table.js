@@ -79,7 +79,6 @@ async function updatePromos() {
     fetch('/promo/page?page=' + page)
         .then(async response => {
             if (!response || !response.ok) {
-                await notify(await response.text());
                 throw await response.text();
             }
             return response;
@@ -101,6 +100,7 @@ function prevPromos() {
     if (page < 1) page = 1;
     updatePromos();
 }
+
 function homePromos() {
     page = 1;
     updatePromos();
