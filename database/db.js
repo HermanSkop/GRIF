@@ -1,6 +1,6 @@
 const {MongoClient} = require('mongodb');
-
-const url = 'mongodb://localhost:27017';
+require('dotenv').config();
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 const dbName = 'grif_db';
 
 const client = new MongoClient(url);

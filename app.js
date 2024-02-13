@@ -12,7 +12,9 @@ const expressWinston = require('express-winston');
 const indexRouter = require('./routers/index').indexRouter;
 const userRouter = require('./routers/user').userRouter;
 const promoRouter = require('./routers/promo').promoRouter;
+const payRouter = require('./routers/pay').payRouter;
 const {getPlans} = require('./schemas/pricing-schema');
+
 const defaultNamingMiddleware = async (req, res, next) => {
     req.prices = await getPlans() || [];
     next();
@@ -28,7 +30,6 @@ const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -60,6 +61,7 @@ app.use(defaultNamingMiddleware);
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/promo', promoRouter);
+app.use('/pay', payRouter);
 app.use('/static', express.static('public'));
 
 app.use(function (err, req, res, next) {

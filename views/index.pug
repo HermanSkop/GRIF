@@ -10,6 +10,7 @@ head
     link(rel='stylesheet' href='css/timer.css')
     link(rel='stylesheet' href='css/main.css')
     link(rel='stylesheet' href='css/normalize.css')
+    script(src='https://js.stripe.com/v3/')
     script(src='js/timer.js')
     script(src='js/bootstrap.bundle.js')
     script(src='js/plans.js')
@@ -20,6 +21,7 @@ head
     script(src='js/promo-table.js')
     script(src='js/on-load.js')
     script(src='https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js')
+    script(src='js/transaction.js')
     title GRIF
 
 .body-container
@@ -250,7 +252,7 @@ head
                                     a(href="#plans")
                                         button.card-button #{tr.buy_ticket}
                                             img(src='images/arrow.png' alt='')
-                            img.person-card-image(src='images/1.png' alt='')
+                            img.person-card-image(src='images/2.png' alt='')
                         .card-side.back(style='background-color: #ffd710;')
                             div #{tr.speakers_list[1].background}
                     .card-item.card(onclick='flip(event)')
@@ -265,7 +267,7 @@ head
                                     a(href="#plans")
                                         button.card-button #{tr.buy_ticket}
                                             img(src='images/arrow.png' alt='')
-                            img.person-card-image(src='images/1.png' alt='')
+                            img.person-card-image(src='images/3.png' alt='')
                         .card-side.back(style='background-color: #ff1010;')
                             div #{tr.speakers_list[2].background}
                     .card-item.prev.card(onclick='flip(event)')
@@ -280,7 +282,7 @@ head
                                     a(href="#plans")
                                         button.card-button #{tr.buy_ticket}
                                             img(src='images/arrow.png' alt='')
-                            img.person-card-image(src='images/1.png' alt='')
+                            img.person-card-image(src='images/3.png' alt='')
                         .card-side.back(style='background-color: #60d041;')
                             div #{tr.speakers_list[3].background}
                     .button-container
@@ -592,3 +594,9 @@ head
         a(href='https://twitter.com/', target='_blank')
             img(src='images/twitter.png' alt='twitter')
     .schedule-side-bar
+
+script.
+    let message = !{JSON.stringify(message)};
+    document.addEventListener('DOMContentLoaded', function() {
+        if (message) notify(message)
+    })
