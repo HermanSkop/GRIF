@@ -188,13 +188,13 @@ a{
 }
 
 /* TODO: make relative */
-.history {
+.history-table {
     position: fixed;
+    z-index: 1;
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
 
-    display: none;
     background-color: #171717;
     max-width: 89%;
     max-height: 85%;
@@ -205,17 +205,10 @@ a{
     border-radius: 6px;
     border-collapse: collapse;
 
+
+
     table-layout: fixed;
     text-align: left;
-}
-.history-title:hover {
-    background-color: inherit;
-}
-.history-title:hover + .history {
-    display: block;
-}
-.history:hover {
-    display: block;
 }
 .history-row{
     padding: 10px 20px;
@@ -1004,7 +997,7 @@ a{
 /* Login popup */
 .popup {
     position: fixed;
-    z-index: 1;
+    z-index: 6;
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);

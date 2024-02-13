@@ -26,26 +26,25 @@ head
 
 .body-container
     #notification.error-notification
-
-    #login-popup.div.overlay.active
-        div.popup
-            .tabs
-                .tab.button.back-button(onclick="toggleLogin()")
-                    img(style="transform: rotate(180deg)" src="./images/arrow.png")
-                .tab(onclick="switchLoginContent('user')") #{tr.login}
-                .tab(onclick="switchLoginContent('register')") #{tr.register}
-            #loginContent.content.active
-                div
-                    h1 #{tr.hello_again}
-                    input(type="text", placeholder=tr.username, id="loginUsername")
-                    input(type="password", placeholder=tr.password, id="loginPassword")
-                    button(onclick='login()') #{tr.login}
-            #registerContent.content
-                div
-                    h1 #{tr.welcome}
-                    input(type="text", placeholder=tr.username, id="registerUsername")
-                    input(type="password", placeholder=tr.password, id="registerPassword")
-                    button(onclick='register()') #{tr.register}
+    #overlay.div.overlay.active
+    div#login-popup.popup
+        .tabs
+            .tab.button.back-button(onclick="toggleLogin()")
+                img(style="transform: rotate(180deg)" src="./images/arrow.png")
+            .tab(onclick="switchLoginContent('user')") #{tr.login}
+            .tab(onclick="switchLoginContent('register')") #{tr.register}
+        #loginContent.content.active
+            div
+                h1 #{tr.hello_again}
+                input(type="text", placeholder=tr.username, id="loginUsername")
+                input(type="password", placeholder=tr.password, id="loginPassword")
+                button(onclick='login()') #{tr.login}
+        #registerContent.content
+            div
+                h1 #{tr.welcome}
+                input(type="text", placeholder=tr.username, id="registerUsername")
+                input(type="password", placeholder=tr.password, id="registerPassword")
+                button(onclick='register()') #{tr.register}
     nav.navbar.navbar-expand-lg.fixed-top.custom-navbar
         .container-fluid(style='padding: 0 0 0 0')
             a.navbar-brand(href='#')
@@ -108,10 +107,10 @@ head
                                     svg(width="24" height="24", viewBox="0 0 24 24", xmlns="http://www.w3.org/2000/svg", fill="none", stroke="currentColor", stroke-width="2", stroke-linecap="round", stroke-linejoin="round", style="transform: scaleX(-1);")
                                         line(x1="3" y1="3" x2="21" y2="3")
 
-                    li(id='history').nav-item.history-title.hidden
+                    li.nav-item.hidden(id='history', onclick='toggleHistory()')
                         a.nav-link #{tr.history}
                     if purchases
-                        table#history-table.history
+                        table#history-table.history-table.hidden
                             thead
                                 tr.history-row
                                     th.history-item #{name}
@@ -132,7 +131,7 @@ head
                                         td.history-item $#{Math.round(purchase.price)}
                                         td.history-item #{purchase.date.getDate() + '.' + (purchase.date.getMonth() + 1) + '.' + purchase.date.getFullYear()}
                     else
-                        table#history-table.history(style='padding: 10px')
+                        table#history-table.history-table.hidden(style='padding: 10px')
                             tr
                                 td #{tr.no_purchases}
                     li.nav-item
