@@ -4,6 +4,8 @@ let page = 1;
 function togglePromos() {
     let promoToggler = document.getElementById("promos-container");
     promoToggler.classList.toggle("hidden");
+    const overlay = document.getElementById(overlayId);
+    promoToggler.classList.contains('hidden') ? overlay.classList.add('hidden') : overlay.classList.remove('hidden');
 }
 
 async function deletePromo(id) {

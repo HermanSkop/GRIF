@@ -1,5 +1,5 @@
 if purchases
-    table#history-table.history
+    table#history-table.history-table
         thead
             tr.history-row
                 th.history-item #{tr.name}
@@ -20,6 +20,6 @@ if purchases
                     td.history-item $#{Math.round(purchase.price)}
                     td.history-item #{purchase.date.getDate() + '.' + (purchase.date.getMonth() + 1) + '.' + purchase.date.getFullYear()}
 else
-    table#history-table.history(style='padding: 10px')
+    table#history-table.history-table(style='padding: 10px')
         tr
             td #{tr.no_purchases}

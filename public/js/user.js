@@ -1,14 +1,23 @@
 const logoutId = 'logout';
+const overlayId = 'overlay';
 const loginId = 'login';
 const historyId = 'history';
+const historyTableId = 'history-table';
 const promosId = 'promos-toggler';
 const promoTableId = 'promos-container';
 
 function toggleLogin() {
     const login = document.getElementById('login-popup');
-    login.classList.contains('active') ? login.classList.remove('active') : login.classList.add('active');
+    login.classList.contains('hidden') ? login.classList.remove('hidden') : login.classList.add('hidden');
+    const overlay = document.getElementById(overlayId);
+    login.classList.contains('hidden') ? overlay.classList.add('hidden') : overlay.classList.remove('hidden');
 }
-
+function toggleHistory() {
+    const historyTable = document.getElementById(historyTableId);
+    historyTable.classList.contains('hidden') ? historyTable.classList.remove('hidden') : historyTable.classList.add('hidden');
+    const overlay = document.getElementById(overlayId);
+    historyTable.classList.contains('hidden') ? overlay.classList.add('hidden') : overlay.classList.remove('hidden');
+}
 function switchLoginContent(contentType) {
     const loginContent = document.getElementById('loginContent');
     const registerContent = document.getElementById('registerContent');
@@ -25,6 +34,7 @@ function switchLoginContent(contentType) {
 function switchStatus(role) {
     toggleLogin();
     let history = document.getElementById(historyId);
+    let historyTable = document.getElementById(historyTableId);
     let logout = document.getElementById(logoutId);
     let login = document.getElementById(loginId);
     let promos = document.getElementById(promosId);
@@ -49,6 +59,7 @@ function switchStatus(role) {
         promos.classList.add('hidden');
         promoTable.classList.add('hidden');
     }
+    historyTable.classList.add('hidden');
     updatePlans();
 }
 
