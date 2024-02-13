@@ -180,5 +180,14 @@
 	"promo_added": "Промокод добавлен",
 	"promo_deleted": "Промокод удален",
 	"promo_added_text": "Промокод успешно добавлен",
-	"promo_deleted_text": "Промокод успешно удален"
+	"promo_deleted_text": "Промокод успешно удален",
+	"no_permission": "Нет доступа",
+	"no_permission_text": "У вас нет прав для выполнения этого действия",
+
+	"payment_success": "Успешная оплата",
+	"payment_success_text": "Оплата прошла успешно, покупка совершена",
+	"payment_failure": "Ошибка оплаты",
+	"payment_failure_text": "Покупка не была совершена, произошла ошибка при оплате",
+	"order_error": "Ошибка заказа",
+	"order_error_text": "Произошла ошибка при оформлении заказа"
 }

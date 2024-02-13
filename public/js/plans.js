@@ -1,3 +1,4 @@
+let stripe = Stripe('pk_test_51Oj66fC0thQyOQDadjcQBNcmOFB0T78o1wg1efnFXyMZsZLEHRqLITD8mIFlUuOXJKoSN0U8rjZvUIQxuWc9RQ9r00CuUdSGnl');
 function moveToItem(index) {
     document.getElementById('tariffs').scrollIntoView({behavior: 'smooth', block: 'center'});
     chooseItem(index);
@@ -17,7 +18,7 @@ function chooseItem(index) {
             const total_price = document.getElementById('total_price');
             total_price.textContent = item.childNodes[1].childNodes[1].textContent;
 
-            Cookies.set('plan', prices[index].name, {path: '/reserve'});
+            Cookies.set('plan', prices[index].name, {path: '/pay/createOrder'});
         });
 }
 
@@ -53,7 +54,7 @@ function submitApplication() {
         phone: phone,
         email: email
     };
-    fetch('/reserve', {
+    fetch('/pay/createOrder', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -69,9 +70,7 @@ function submitApplication() {
         })
         .then(response => response.json())
         .then(async res => {
-            await notify(res.message);
-            document.getElementById('history-table').innerHTML = res.history;
-            await updateHistory();
+            stripe.redirectToCheckout({ sessionId: res.id });
         });
 }
 
@@ -85,5 +84,5 @@ function updatePlans() {
 }
 
 function resetPlanCookie() {
-    Cookies.remove('plan', {path: '/reserve'});
+    Cookies.remove('plan', {path: '/pay/createOrder'});
 }

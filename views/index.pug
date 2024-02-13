@@ -10,6 +10,7 @@ head
     link(rel='stylesheet' href='css/timer.css')
     link(rel='stylesheet' href='css/main.css')
     link(rel='stylesheet' href='css/normalize.css')
+    script(src='https://js.stripe.com/v3/')
     script(src='js/timer.js')
     script(src='js/bootstrap.bundle.js')
     script(src='js/plans.js')
@@ -20,6 +21,7 @@ head
     script(src='js/promo-table.js')
     script(src='js/on-load.js')
     script(src='https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js')
+    script(src='js/transaction.js')
     title GRIF
 
 .body-container
@@ -592,3 +594,9 @@ head
         a(href='https://twitter.com/', target='_blank')
             img(src='images/twitter.png' alt='twitter')
     .schedule-side-bar
+
+script.
+    let message = !{JSON.stringify(message)};
+    document.addEventListener('DOMContentLoaded', function() {
+        if (message) notify(message)
+    })

@@ -9,6 +9,7 @@
     "@popperjs/core": "^2.11.8",
     "cookie-parser": "~1.4.4",
     "debug": "~4.3.4",
+    "dotenv": "^16.4.3",
     "exceljs": "^4.4.0",
     "express": "~4.16.1",
     "express-session": "^1.17.3",
@@ -18,9 +19,11 @@
     "i18n-express": "^1.1.3",
     "i18next": "^23.7.11",
     "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
+    "stripe": "^14.16.0",
     "winston": "~3.11.0"
   }
 }

@@ -178,5 +178,12 @@
 	"promo_added_text": "Promo added successfully",
 	"promo_deleted_text": "Promo deleted successfully",
 	"no_permission": "no_permission",
-	"no_permission_text": "no_permission_text"
+	"no_permission_text": "no_permission_text",
+
+	"payment_success": "Payment success",
+	"payment_success_text": "Payment was completed successfully",
+	"payment_failure": "Payment failed",
+	"payment_failure_text": "Payment was not completed, purchase was not made",
+	"order_error": "Order error",
+	"order_error_text": "Order was not created due to internal error"
 }
