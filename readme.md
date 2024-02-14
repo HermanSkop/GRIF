@@ -4,7 +4,7 @@
 
 ## Overview
 
-The application represents fictional Global Reality Investing Forum.
+The application represents fictional Global Realty Investing Forum.
 The main goal of the application is to provide
 a platform for investors to share their ideas and discuss the latest trends in the investment world.
 The application is designed to be user-friendly and intuitive.
