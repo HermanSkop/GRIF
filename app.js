@@ -65,25 +65,21 @@ app.use('/pay', payRouter);
 app.use('/static', express.static('public'));
 
 app.use(function (err, req, res, next) {
-    console.log('before error handling');
     console.error(err);
-    if (!err.clientIgnore) {
-        console.log('!err.clientIgnore');
-        console.error(err);
-        if (err.isNotification) {
-            res.status(400).render('error-notification', {
-                title: res.__(err.title ? err.title : 'error'),
-                message: res.__(err.message ? err.message : 'error_text'),
-            });
-        } else {
-            res.status(500).render('error', {
-                title: res.__('error'),
-                message: res.__('error_text'),
-            });
-        }
+    if (err.isNotification) {
+        console.log('if')
+        res.status(400).render('error-notification', {
+            title: res.__(err.title ? err.title : 'error'),
+            message: res.__(err.message ? err.message : 'error_text'),
+        });
     }
-    console.log('res.status(400);');
-    res.status(400);
+    else {
+        console.log('else')
+        res.status(500).render('error', {
+            title: res.__('error'),
+            message: res.__('error_text'),
+        });
+    }
 });
 app.use((req, res) => {
     res.status(404).render('error', {

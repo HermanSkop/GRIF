@@ -4,16 +4,12 @@ const {login, register} = require('../services/user-service');
 const getIndexParameters = require('./index').getIndexParameters;
 router.get('/', async function (req, res, next) {
     try {
-        console.log('before user check');
-        if (!req.session.user) throw new Error('not_logged_in');
-        console.log('before res status 200');
+        if (!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
         res.status(200).json({
             loginMessage: res.__('login_message'),
             user: req.session.user
         });
     } catch (err) {
-        console.log('before next');
-        err.clientIgnore = true;
         next(err, req, res, next);
     }
 });
