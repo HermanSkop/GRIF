@@ -1141,6 +1141,15 @@ a{
         box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
         border-radius: 4px;
     }
+    .language-toggler{
+        scale: 2;
+        margin-bottom: 3%;
+    }
+
+    /* Main screen */
+    .main-screen{
+        padding-top: 8%;
+    }
 
     /* Main description */
     .rectangle{
@@ -1214,6 +1223,14 @@ a{
     }
     .navbar-toggler{
         border: #f8ca14 solid 1px;
+    }
+
+    /* Forms */
+    .credentials-form{
+        border-width: 3px;
+    }
+    body{
+        font-size: larger;
     }
 }
 
