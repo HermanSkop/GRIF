@@ -39,6 +39,7 @@ function switchStatus(role) {
     let login = document.getElementById(loginId);
     let promos = document.getElementById(promosId);
     let promoTable = document.getElementById(promoTableId);
+    console.log(role);
     if (role === 'customer') {
         history.classList.remove('hidden');
         logout.classList.remove('hidden');
