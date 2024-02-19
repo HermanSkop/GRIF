@@ -24,10 +24,13 @@ router.post('/', async function (req, res, next) {
 });
 router.get('/', async function (req, res, next) {
     try {
+        console.log('1');
         res.render('application', await getIndexParameters(req), async (err, html) => {
             let applicationSection = html;
             if (err) throw err;
+            console.log('2');
             res.render('plans', await getIndexParameters(req), (err, html) => {
+                console.log('3');
                 let plansSection = html;
                 if (err) throw err;
                 res.status(200).json({
@@ -37,6 +40,7 @@ router.get('/', async function (req, res, next) {
             });
         });
     } catch (err) {
+        console.log('4');
         next(err, req, res, next);
     }
 });
