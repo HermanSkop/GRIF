@@ -65,7 +65,9 @@ app.use('/pay', payRouter);
 app.use('/static', express.static('public'));
 
 app.use(function (err, req, res, next) {
+    console.log('before error handling');
     if (!err.clientIgnore) {
+        console.log('!err.clientIgnore');
         console.error(err);
         if (err.isNotification) {
             res.status(400).render('error-notification', {
