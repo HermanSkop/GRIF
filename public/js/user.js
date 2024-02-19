@@ -149,7 +149,6 @@ async function loginOnLoad() {
         .then(async response => {
             if (!response || response.status !== 200) {
                 switchStatus('guest')
-                await notify(await response.text());
                 throw await response.text();
             }
             return response;
