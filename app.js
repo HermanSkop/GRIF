@@ -66,6 +66,7 @@ app.use('/static', express.static('public'));
 
 app.use(function (err, req, res, next) {
     console.log('before error handling');
+    console.error(err);
     if (!err.clientIgnore) {
         console.log('!err.clientIgnore');
         console.error(err);
@@ -81,6 +82,7 @@ app.use(function (err, req, res, next) {
             });
         }
     }
+    console.log('res.status(400);');
     res.status(400);
 });
 app.use((req, res) => {
