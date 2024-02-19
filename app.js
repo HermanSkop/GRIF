@@ -67,14 +67,12 @@ app.use('/static', express.static('public'));
 app.use(function (err, req, res, next) {
     console.error(err);
     if (err.isNotification) {
-        console.log('if')
         res.status(400).render('error-notification', {
             title: res.__(err.title ? err.title : 'error'),
             message: res.__(err.message ? err.message : 'error_text'),
         });
     }
     else {
-        console.log('else')
         res.status(500).render('error', {
             title: res.__('error'),
             message: res.__('error_text'),
