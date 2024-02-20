@@ -4,9 +4,7 @@ const {login, register} = require('../services/user-service');
 const getIndexParameters = require('./index').getIndexParameters;
 router.get('/', async function (req, res, next) {
     try {
-        console.log('userRouter');
         if (!req.session.user) throw {title: 'not_logged_in', message: 'not_logged_in_text', isNotification: true};
-        console.log('after if');
         res.status(200).json({
             loginMessage: res.__('login_message'),
             user: req.session.user

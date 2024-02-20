@@ -20,8 +20,6 @@ head
     script(src='js/language.js')
     script(src='js/promo-table.js')
     script(src='js/on-load.js')
-    script(src='https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js')
-    script(src='js/transaction.js')
     title GRIF
 
 .body-container
@@ -594,6 +592,8 @@ head
             img(src='images/twitter.png' alt='twitter')
     .schedule-side-bar
 
+script(src='https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js')
+script(src='js/transaction.js')
 script.
     let message = !{JSON.stringify(message)};
     document.addEventListener('DOMContentLoaded', function() {
