@@ -592,7 +592,30 @@ head
             img(src='images/twitter.png' alt='twitter')
     .schedule-side-bar
 
-script(src='https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js')
+script.
+    // Record the start time
+    var startTime = performance.now();
+
+    // Create a new script element
+    var scriptElement = document.createElement('script');
+
+    // Set the source attribute to the script you want to load
+    scriptElement.src = 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js';
+
+    // Append the script element to the document body
+    document.body.appendChild(scriptElement);
+
+    // Add an event listener for the 'load' event
+    scriptElement.addEventListener('load', function() {
+    // Record the end time
+    var endTime = performance.now();
+
+    // Calculate the loading time
+    var loadingTime = endTime - startTime;
+
+    // Log the loading time
+    console.log("Script loading time: " + loadingTime + " milliseconds");
+    });
 script(src='js/transaction.js')
 script.
     let message = !{JSON.stringify(message)};
