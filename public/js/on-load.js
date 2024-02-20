@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    await checkCookieAccess();
+   // await checkCookieAccess();
     await resetPlanCookie();
     await loginOnLoad();
 });
