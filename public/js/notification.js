@@ -7,8 +7,6 @@ async function notify(htmlError) {
     notification.innerHTML = htmlError;
     timeout ? clearTimeout(timeout) : null;
     timeout = setTimeout(
-        function () {
-            document.getElementById('notification').classList.remove('showError');
-        },
+        () => document.getElementById('notification').classList.remove('showError'),
         notificationTimeout);
 }

@@ -6,11 +6,17 @@ const historyTableId = 'history-table';
 const promosId = 'promos-toggler';
 const promoTableId = 'promos-container';
 
-function toggleLogin() {
+function toggleLogin(enforceVisible = false) {
     const login = document.getElementById('login-popup');
-    login.classList.contains('hidden') ? login.classList.remove('hidden') : login.classList.add('hidden');
     const overlay = document.getElementById(overlayId);
-    login.classList.contains('hidden') ? overlay.classList.add('hidden') : overlay.classList.remove('hidden');
+    if (enforceVisible){
+        overlay.classList.remove('hidden');
+        login.classList.remove('hidden');
+    }
+    else{
+        overlay.classList.toggle('hidden');
+        login.classList.toggle('hidden');
+    }
 }
 function toggleHistory() {
     const historyTable = document.getElementById(historyTableId);
@@ -58,6 +64,7 @@ function switchStatus(role) {
         login.classList.remove('hidden');
         promos.classList.add('hidden');
         promoTable.classList.add('hidden');
+        toggleLogin(true);
     }
     historyTable.classList.add('hidden');
     updatePlans();

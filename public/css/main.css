@@ -1080,13 +1080,17 @@ a{
 
 /* Error notification */
 .error-notification{
-    border-bottom-right-radius: 7px;
+    border-radius: 7px;
     border: black solid 1px;
     text-align: center;
     padding: 10px 20px;
 
     position: fixed;
     z-index: 1000;
+    left: 4%;
+
+    box-shadow: black 0 0 10px;
+
     display: flex;
     max-width: 60%;
     background-color: #f8ca14;
@@ -1099,7 +1103,7 @@ a{
 }
 .error-notification.showError{
     opacity: 1;
-    transform: translateY(75px);
+    transform: translateY(10vh);
 }
 
 /* Commons */
