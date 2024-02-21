@@ -1,14 +1,14 @@
-if purchases
-    table#history-table.history-table
+if purchases.length > 0
+    table#history-table.history-table.hidden
         thead
             tr.history-row
-                th.history-item #{tr.name}
-                th.history-item #{tr.email}
-                th.history-item #{tr.phone}
-                th.history-item #{tr.plan}
-                th.history-item #{tr.promo}
-                th.history-item #{tr.price}
-                th.history-item #{tr.date}
+                th.history-item #{name}
+                th.history-item #{email}
+                th.history-item #{phone}
+                th.history-item #{plan}
+                th.history-item #{promo_name}
+                th.history-item #{price}
+                th.history-item #{date}
         tbody
             each purchase in purchases
                 tr.history-row
@@ -20,6 +20,6 @@ if purchases
                     td.history-item $#{Math.round(purchase.price)}
                     td.history-item #{purchase.date.getDate() + '.' + (purchase.date.getMonth() + 1) + '.' + purchase.date.getFullYear()}
 else
-    table#history-table.history-table(style='padding: 10px')
+    table#history-table.history-table.hidden(style='padding: 10px')
         tr
             td #{tr.no_purchases}
