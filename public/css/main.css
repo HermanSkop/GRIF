@@ -190,7 +190,7 @@ a{
 /* TODO: make relative */
 .history-table {
     position: fixed;
-    z-index: 1;
+    z-index: 6;
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
@@ -925,8 +925,10 @@ a{
     border-width: 1px;
     border-style: dashed;
     border-color: #E0E0E0;
+
     width: 50%;
     padding: 80px 50px;
+    margin-top: 60px;
 }
 .credentials-form h4{
     margin: 0 0 20px 0;
@@ -997,7 +999,7 @@ a{
 /* Login popup */
 .popup {
     position: fixed;
-    z-index: 6;
+    z-index: 1040;
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
@@ -1086,7 +1088,7 @@ a{
     padding: 10px 20px;
 
     position: fixed;
-    z-index: 1000;
+    z-index: 1050;
     left: 4%;
 
     box-shadow: black 0 0 10px;
