@@ -10,6 +10,8 @@ head
     link(rel='stylesheet' href='css/timer.css')
     link(rel='stylesheet' href='css/main.css')
     link(rel='stylesheet' href='css/normalize.css')
+    link(rel='preload' href="../images/main.jpg" as="image")
+    link(rel='preload' href="../images/buildings.png" as="image")
     script(src='https://js.stripe.com/v3/')
     script(src='https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js')
     script(src='js/timer.js')
@@ -79,7 +81,7 @@ head
                                     tr
                                         td #{promo._id}
                                         td #{promo.name}
-                                        td #{parseInt((1-promo.discount)*100)}%
+                                        td #{parseInt((1 - promo.discount) * 100)}%
                                         td #{promo.used}
                                         td
                                             svg#cross-icon(onclick="deletePromo('#{promo._id.toString()}')", width="24", height="24", viewBox="0 0 24 24", xmlns="http://www.w3.org/2000/svg", fill="none", stroke="currentColor", stroke-width="3", stroke-linecap="round", stroke-linejoin="round")
@@ -87,7 +89,7 @@ head
                                                 line(x1="3" y1="21" x2="21" y2="3")
                         div.nav-container
                             div.promo-input-container
-                                input#promo-discount.promo-input(placeholder=placeholder = tr.discount+'(%)' type='number' name='discount' min="0" max="100" step="1")
+                                input#promo-discount.promo-input(placeholder=placeholder = tr.discount + '(%)' type='number' name='discount' min="0" max="100" step="1")
                                 input#promo-name-input.promo-input(placeholder=placeholder = tr.promo type='text' name='promo')
                                 button(onclick='putPromo()')
                                     svg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewbox='0 0 16 16' fill='none')
@@ -145,12 +147,12 @@ head
                         a.nav-link(href='#plans') #{tr.plans}
                 script(type='module').
                     window.addEventListener('scroll', function () {
-                    document.querySelectorAll('.section').forEach((elem) => {
-                    let navlink = document.querySelector(`a[href="#${elem.id}"]`);
-                    if (100 >= elem.getBoundingClientRect().top) {
-                    setActive(navlink);
-                    }
-                    });
+                        document.querySelectorAll('.section').forEach((elem) => {
+                            let navlink = document.querySelector(`a[href="#${elem.id}"]`);
+                            if (100 >= elem.getBoundingClientRect().top) {
+                                setActive(navlink);
+                            }
+                        });
                     });
                     function setActive(element) {
                     const listItems = document.querySelectorAll('.navbar-nav .nav-item');
@@ -595,5 +597,5 @@ head
 script.
     let message = !{JSON.stringify(message)};
     document.addEventListener('DOMContentLoaded', function() {
-        if (message) notify(message)
+    if (message) notify(message)
     })
