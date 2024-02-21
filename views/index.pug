@@ -47,7 +47,7 @@ head
                 input(type="text", placeholder=tr.username, id="registerUsername")
                 input(type="password", placeholder=tr.password, id="registerPassword")
                 button(onclick='register()') #{tr.register}
-    if purchases.length > 0
+    if purchases && purchases.length > 0
         table#history-table.history-table.hidden
             thead
                 tr.history-row
