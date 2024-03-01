@@ -160,7 +160,7 @@
 	"not_found_txt": "Page you are looking for is not found",
 	"return_home": "Return to the homepage",
 	"cant_change_language": "It is impossible to change the language",
-	"user_already_exists": "user_already_exists",
+	"user_already_exists": "Such username already exists",
 	"no_promos": "There are no promos yet",
 	"promos": "Promos",
 	"not_customer": "You are not a customer",

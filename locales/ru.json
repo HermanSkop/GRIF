@@ -156,14 +156,10 @@
 	"purchase_completed": "Покупка завершена успешно",
 	"not_logged_in": "Вы не вошли в систему",
 	"not_logged_in_text": "Для выполнения действия необходимо войти в систему",
-	"res": {
-		"renderFile is not a function": "res.renderFile is not a function"
-	},
 	"promo": "Промокод",
 	"promo_applied": "Промокод применен",
 	"not_found_txt": "Страница которую вы ищете не найдена",
 	"return_home": "Вернуться на главную страницу",
-	"language_changed": "language_changed",
 	"cant_change_language": "Не удалось изменить язык",
 	"no_promos": "Нет промокодов",
 	"promos": "Промокоды",
